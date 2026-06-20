@@ -248,7 +248,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   /* ====== PASTE YOUR SUPABASE VALUES BETWEEN THE QUOTES ====== */
-  window.SUPA_URL = "https://oxlyeerhgczsrlabhimo.supabase.coL";
+  window.SUPA_URL = "https://oxlyeerhgczsrlabhimo.supabase.co";
   window.SUPA_KEY = "sb_publishable_C9I4vXMvrUsLvmuyvX8Oyw_1eQ4Hv7i";
   /* =========================================================== */
 </script>
@@ -296,7 +296,7 @@
 
   <!-- HOME -->
   <section class="view" id="view-home">
-    <h2 class="section">Bonjour, Renato.</h2>
+    <h2 class="section">Bonjour !</h2>
     <p class="sub">A1 → A2. Standard French, built off European Portuguese. Drill here daily; bring your written production to chat.</p>
     <div class="stats" id="stats"></div>
     <div class="cta-row" id="ctaRow"></div>
@@ -482,7 +482,10 @@ const LESSONS=[
       {type:'choice',q:'___ problème',opts:['le','la'],a:'le'},
       {type:'choice',q:'___ mer (≠ o mar!)',opts:['le','la'],a:'la'},
       {type:'choice',q:'___ voyage (≠ a viagem!)',opts:['le','la'],a:'le'},
-      {type:'choice',q:'___ système',opts:['le','la'],a:'le'}
+      {type:'choice',q:'___ système',opts:['le','la'],a:'le'},
+      {type:'choice',q:'___ voiture (≠ o carro!)',opts:['le','la'],a:'la'},
+      {type:'choice',q:'___ téléphone',opts:['le','la'],a:'le'},
+      {type:'choice',q:'uma viagem → ___ voyage',opts:['un','une'],a:'un'}
     ]
   },
   {
@@ -509,7 +512,10 @@ const LESSONS=[
       {type:'type',q:'nous ___ (nós somos)',a:'sommes'},
       {type:'type',q:'vous ___ (vocês são)',a:'êtes'},
       {type:'choice',q:'Sou português →',opts:['Je suis portugais','J\'ai portugais'],a:'Je suis portugais'},
-      {type:'type',q:'ils ___ (eles são)',a:'sont'}
+      {type:'type',q:'ils ___ (eles são)',a:'sont'},
+      {type:'type',q:'tu és → tu ___',a:'es'},
+      {type:'choice',q:'Estou cansado →',opts:["Je suis fatigué","J'ai fatigué"],a:"Je suis fatigué"},
+      {type:'type',q:'ela é → elle ___',a:'est'}
     ]
   },
   {
@@ -538,7 +544,10 @@ const LESSONS=[
       {type:'type',q:'nós temos → nous ___',a:'avons'},
       {type:'type',q:'eles têm → ils ___',a:'ont'},
       {type:'choice',q:'Tenho 30 anos →',opts:["J'ai trente ans","Je suis trente ans"],a:"J'ai trente ans"},
-      {type:'type',q:'tu tens → tu ___',a:'as'}
+      {type:'type',q:'tu tens → tu ___',a:'as'},
+      {type:'type',q:'ela tem → elle ___',a:'a'},
+      {type:'choice',q:'Tenho fome (fome = faim) →',opts:["J'ai faim","Je suis faim"],a:"J'ai faim"},
+      {type:'type',q:'vocês têm → vous ___',a:'avez'}
     ]
   },
   {
@@ -565,7 +574,10 @@ const LESSONS=[
       {type:'type',q:'moramos → nous ___ (habiter)',a:'habitons'},
       {type:'type',q:'eles trabalham → ils ___ (travailler)',a:'travaillent'},
       {type:'type',q:'tu falas → tu ___ (parler)',a:'parles'},
-      {type:'type',q:'vocês moram → vous ___ (habiter)',a:'habitez'}
+      {type:'type',q:'vocês moram → vous ___ (habiter)',a:'habitez'},
+      {type:'type',q:"amo → j'___ (aimer)",a:'aime'},
+      {type:'type',q:'ele fala → il ___ (parler)',a:'parle'},
+      {type:'type',q:'nós trabalhamos → nous ___ (travailler)',a:'travaillons'}
     ]
   },
   {
@@ -586,7 +598,10 @@ const LESSONS=[
       {type:'type',q:'Fill the gap: Je ___ ai pas (n\' or ne?)',a:"n'"},
       {type:'choice',q:'Ele não tem →',opts:["Il n'a pas","Il ne a pas"],a:"Il n'a pas"},
       {type:'choice',q:'Nós não trabalhamos →',opts:['Nous ne travaillons pas','Nous travaillons ne pas'],a:'Nous ne travaillons pas'},
-      {type:'type',q:'eu não sou → je ne ___ pas (être)',a:'suis'}
+      {type:'type',q:'eu não sou → je ne ___ pas (être)',a:'suis'},
+      {type:'choice',q:'Não tenho →',opts:["Je n'ai pas","Je ne ai pas"],a:"Je n'ai pas"},
+      {type:'choice',q:'Não falamos francês →',opts:['Nous ne parlons pas français','Nous parlons ne pas français'],a:'Nous ne parlons pas français'},
+      {type:'type',q:"Preenche: Tu ___ travailles pas (ne ou n'?)",a:'ne'}
     ]
   },
   {
@@ -611,7 +626,10 @@ const LESSONS=[
       {type:'type',q:'"quando" em francês →',a:'quand'},
       {type:'choice',q:'Polite "Do you speak French?" →',opts:['Est-ce que vous parlez français ?','Vous parlez-vous français ?'],a:'Est-ce que vous parlez français ?'},
       {type:'type',q:'"quanto" em francês →',a:'combien'},
-      {type:'type',q:'"como" em francês →',a:'comment'}
+      {type:'type',q:'"como" em francês →',a:'comment'},
+      {type:'type',q:'"quem" em francês →',a:'qui'},
+      {type:'type',q:'"porquê" em francês →',a:'pourquoi'},
+      {type:'choice',q:'Casual "Falas francês?" →',opts:['Tu parles français ?','Parles français tu ?'],a:'Tu parles français ?'}
     ]
   },
   {
@@ -636,7 +654,10 @@ const LESSONS=[
       {type:'type',q:'21 →',a:'vingt et un'},
       {type:'type',q:'40 →',a:'quarante'},
       {type:'type',q:'15 →',a:'quinze'},
-      {type:'type',q:'60 →',a:'soixante'}
+      {type:'type',q:'60 →',a:'soixante'},
+      {type:'type',q:'33 →',a:'trente-trois'},
+      {type:'type',q:'50 →',a:'cinquante'},
+      {type:'type',q:'19 →',a:'dix-neuf'}
     ]
   },
   {
@@ -657,7 +678,10 @@ const LESSONS=[
       {type:'choice',q:'a big house →',opts:['une grande maison','une maison grande'],a:'une grande maison'},
       {type:'type',q:'uns livros interessantes → des livres ___',a:'intéressants'},
       {type:'choice',q:'um carro vermelho →',opts:['une voiture rouge','une rouge voiture'],a:'une voiture rouge'},
-      {type:'type',q:'bom (feminino) →',a:'bonne'}
+      {type:'type',q:'bom (feminino) →',a:'bonne'},
+      {type:'choice',q:'um bom livro →',opts:['un bon livre','un livre bon'],a:'un bon livre'},
+      {type:'type',q:'pequenas (fem. pl.) →',a:'petites'},
+      {type:'choice',q:'uma casa branca (branco = blanc) →',opts:['une maison blanche','une blanche maison'],a:'une maison blanche'}
     ]
   },
   {
@@ -677,7 +701,10 @@ const LESSONS=[
       {type:'choice',q:'Como pão → Je mange ___ pain',opts:['du','le'],a:'du'},
       {type:'type',q:'Como legumes → Je mange ___ légumes',a:'des'},
       {type:'choice',q:'Não bebo café → Je ne bois pas ___ café',opts:['de','du'],a:'de'},
-      {type:'choice',q:'Bebo vinho → Je bois ___ vin',opts:['du','de'],a:'du'}
+      {type:'choice',q:'Bebo vinho → Je bois ___ vin',opts:['du','de'],a:'du'},
+      {type:'choice',q:'Como carne → Je mange ___ viande',opts:['de la','la'],a:'de la'},
+      {type:'choice',q:'Não como carne → Je ne mange pas ___ viande',opts:['de','de la'],a:'de'},
+      {type:'choice',q:"Bebo água → Je bois ___ eau",opts:["de l'",'du'],a:"de l'"}
     ]
   },
   {
@@ -697,7 +724,10 @@ const LESSONS=[
       {type:'choice',q:'vamos partir → nous ___ partir',opts:['allons','allez'],a:'allons'},
       {type:'type',q:'eles vão falar → ils ___ parler',a:'vont'},
       {type:'choice',q:'vais trabalhar → tu ___ travailler',opts:['vas','va'],a:'vas'},
-      {type:'type',q:'vou morar → je vais ___ (habiter)',a:'habiter'}
+      {type:'type',q:'vou morar → je vais ___ (habiter)',a:'habiter'},
+      {type:'type',q:'vamos comer → nous allons ___',a:'manger'},
+      {type:'type',q:'ela vai partir → elle ___ partir',a:'va'},
+      {type:'choice',q:'Vou estudar →',opts:['Je vais étudier','Je vais étudie'],a:'Je vais étudier'}
     ]
   },
   {
@@ -717,7 +747,216 @@ const LESSONS=[
       {type:'type',q:'comemos → nous avons ___ (manger)',a:'mangé'},
       {type:'choice',q:'ele trabalhou → il ___ travaillé',opts:['a','est'],a:'a'},
       {type:'type',q:'moraste → tu as ___ (habiter)',a:'habité'},
-      {type:'choice',q:'comi →',opts:["j'ai mangé",'je mange'],a:"j'ai mangé"}
+      {type:'choice',q:'comi →',opts:["j'ai mangé",'je mange'],a:"j'ai mangé"},
+      {type:'type',q:"vendi → j'ai ___ (vendre)",a:'vendu'},
+      {type:'type',q:'ela falou → elle a ___ (parler)',a:'parlé'},
+      {type:'choice',q:'eles comeram →',opts:['ils ont mangé','ils sont mangé'],a:'ils ont mangé'}
+    ]
+  },
+  {
+    id:'L12',title:'Les adjectifs possessifs',sub:'mon/ma/mes — agree with the thing, not the owner',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <table class="conjtab">
+          <tr><td>my</td><td><span class="fr">mon</span> (m) · <span class="fr">ma</span> (f) · <span class="fr">mes</span> (pl)</td></tr>
+          <tr><td>your</td><td><span class="fr">ton · ta · tes</span></td></tr>
+          <tr><td>his/her</td><td><span class="fr">son · sa · ses</span></td></tr>
+          <tr><td>our</td><td><span class="fr">notre · notre · nos</span></td></tr>
+          <tr><td>your (pl)</td><td><span class="fr">votre · votre · vos</span></td></tr>
+          <tr><td>their</td><td><span class="fr">leur · leur · leurs</span></td></tr>
+        </table>
+        <p>Before a feminine word starting with a vowel, use <b>mon/ton/son</b>: <span class="fr">mon amie</span>.</p>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · trust PT, not English</span>
+        Like PT (o meu/a minha/os meus), and like PT <b>son/sa agree with the noun owned, not the owner</b>: <span class="fr">sa maison</span> = a casa dele OR dela. Difference: French drops the article — <span class="fr">mon livre</span>, never "le mon livre".</div>
+    `,
+    drills:[
+      {type:'choice',q:'o meu pai → ___ père',opts:['mon','ma'],a:'mon'},
+      {type:'choice',q:'a minha mãe → ___ mère',opts:['mon','ma'],a:'ma'},
+      {type:'type',q:'os meus pais → ___ parents',a:'mes'},
+      {type:'choice',q:'a tua casa → ___ maison',opts:['ton','ta'],a:'ta'},
+      {type:'choice',q:'a amiga dele → ___ amie (começa por vogal!)',opts:['sa','son'],a:'son'},
+      {type:'type',q:'o nosso carro → ___ voiture',a:'notre'},
+      {type:'choice',q:'os vossos livros → ___ livres',opts:['vos','votre'],a:'vos'},
+      {type:'type',q:'o livro deles → ___ livre',a:'leur'}
+    ]
+  },
+  {
+    id:'L13',title:'Le passé composé avec être',sub:'~15 movement verbs + agreement with the subject',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <p>About 15 verbs (movement/state) form the passé composé with <b>être</b>, not avoir. With être the participle <b>agrees with the subject</b> (add -e fem, -s plural).</p>
+        <div class="ex">je suis <span class="fr">allé / allée</span> · nous sommes <span class="fr">allés / allées</span></div>
+        <p>The set: aller, venir, arriver, partir, entrer, sortir, monter, descendre, rester, tomber, naître, mourir, retourner, passer, devenir — plus all reflexives.</p>
+      </div>
+      <div class="pt-contrast faux"><span class="lab">piège · agreement has no PT match</span>
+        PT uses <b>ter</b> for everything. French splits avoir/être, and only with être does the participle change like an adjective.
+        <div class="ex"><span class="fr">Elle est partie.</span> = Ela partiu. · <span class="fr">Ils sont arrivés.</span> = Eles chegaram.</div></div>
+    `,
+    drills:[
+      {type:'choice',q:'eu fui (movimento) → je ___ allé',opts:['suis','ai'],a:'suis'},
+      {type:'choice',q:'ela foi → elle est ___',opts:['allée','allé'],a:'allée'},
+      {type:'choice',q:'ele comeu (avoir!) → il ___ mangé',opts:['a','est'],a:'a'},
+      {type:'type',q:'nós chegámos (m) → nous sommes ___ (arriver)',a:'arrivés'},
+      {type:'choice',q:'ela partiu → elle est ___',opts:['partie','parti'],a:'partie'},
+      {type:'choice',q:'eles ficaram → ils sont ___',opts:['restés','resté'],a:'restés'},
+      {type:'choice',q:'Falei (avoir) →',opts:["j'ai parlé","je suis parlé"],a:"j'ai parlé"},
+      {type:'type',q:'tu vieste (m) → tu es ___ (venir)',a:'venu'}
+    ]
+  },
+  {
+    id:'L14',title:"L'imparfait",sub:'the past of description and habit — your PT imperfeito',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <p>Take the <b>nous</b> present stem (minus -ons) and add <b>-ais, -ais, -ait, -ions, -iez, -aient</b>. parler → nous parlons → parl- → je parlais. <b>être</b> is irregular: ét- (j'étais).</p>
+        <p>Use it for background, description, and past habits ("used to / was -ing"). Use the passé composé for single completed actions.</p>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · a big free win</span>
+        Imparfait = PT <b>imperfeito</b> (falava, morava). The imparfait-vs-passé-composé choice is exactly your PT <b>imperfeito vs pretérito perfeito</b> — you already feel it.
+        <div class="ex"><span class="fr">Quand j'étais jeune, j'habitais à Lisbonne.</span> = Quando era novo, morava em Lisboa.</div></div>
+    `,
+    drills:[
+      {type:'type',q:'eu falava → je ___ (parler)',a:'parlais'},
+      {type:'type',q:'nós morávamos → nous ___ (habiter)',a:'habitions'},
+      {type:'type',q:"eu era → j'___ (être)",a:'étais'},
+      {type:'type',q:'ele tinha → il ___ (avoir)',a:'avait'},
+      {type:'type',q:'eles faziam → ils ___ (faire)',a:'faisaient'},
+      {type:'choice',q:'Descrição / hábito no passado →',opts:['imparfait','passé composé'],a:'imparfait'},
+      {type:'choice',q:'Ação única terminada →',opts:['passé composé','imparfait'],a:'passé composé'},
+      {type:'type',q:'tu bebias → tu ___ (boire)',a:'buvais'}
+    ]
+  },
+  {
+    id:'L15',title:'Les pronoms compléments',sub:'le/la/les & lui/leur — and they go BEFORE the verb',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <p><b>Direct object</b> (COD): me, te, <b>le/la/les</b>, nous, vous. <b>Indirect</b> (COI, "to someone"): me, te, <b>lui/leur</b>, nous, vous.</p>
+        <div class="ex">Je vois Marie → Je <span class="fr">la</span> vois. · Je parle à Paul → Je <span class="fr">lui</span> parle.</div>
+        <p>The pronoun sits <b>directly before the conjugated verb</b>.</p>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · same idea, fixed position</span>
+        PT has o/a/os/as (COD) and lhe/lhes (COI). Difference: French <b>always</b> puts it before the conjugated verb (je le vois), while PT shifts (vejo-o / o vejo). <b>lui</b> = "to him/her", both genders.</div>
+    `,
+    drills:[
+      {type:'choice',q:'Je vois Marie → Je ___ vois',opts:['la','lui'],a:'la'},
+      {type:'choice',q:'Je parle à Paul → Je ___ parle',opts:['le','lui'],a:'lui'},
+      {type:'choice',q:'Tu manges la pomme → Tu ___ manges',opts:['la','lui'],a:'la'},
+      {type:'choice',q:'Il téléphone à ses parents → Il ___ téléphone',opts:['les','leur'],a:'leur'},
+      {type:'type',q:'Je regarde le film → Je ___ regarde',a:'le'},
+      {type:'choice',q:'Vês-me → Tu ___ vois',opts:['me','le'],a:'me'},
+      {type:'choice',q:'Onde fica o pronome?',opts:['antes do verbo','depois do verbo'],a:'antes do verbo'},
+      {type:'choice',q:'Nous aidons nos amis → Nous ___ aidons',opts:['les','leur'],a:'les'}
+    ]
+  },
+  {
+    id:'L16',title:'Les verbes pronominaux',sub:'reflexives: se laver, se lever, s\'appeler',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <p>A reflexive pronoun (me/te/se/nous/vous/se) sits before the verb: je <b>me</b> lève, tu <b>te</b> lèves, il <b>se</b> lève, nous <b>nous</b> levons, vous <b>vous</b> levez, ils <b>se</b> lèvent.</p>
+        <p>In the passé composé they take <b>être</b> and agree: je me suis levé(e).</p>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · direct parallel</span>
+        PT has the same (lavar-se, levantar-se, chamar-se). Difference: French puts the pronoun <b>before</b> (je me lave) where PT attaches it after (lavo-me).
+        <div class="ex"><span class="fr">Je m'appelle Renato.</span> = Chamo-me Renato.</div></div>
+    `,
+    drills:[
+      {type:'type',q:'chamo-me → je ___ appelle',a:"m'"},
+      {type:'choice',q:'levanto-me → je ___ lève',opts:['me','se'],a:'me'},
+      {type:'type',q:'tu deitas-te → tu ___ couches',a:'te'},
+      {type:'choice',q:'ele lava-se → il ___ lave',opts:['se','te'],a:'se'},
+      {type:'type',q:'nós levantamo-nos → nous ___ levons',a:'nous'},
+      {type:'choice',q:'Chamo-me Ana →',opts:["Je m'appelle Ana","J'appelle Ana"],a:"Je m'appelle Ana"},
+      {type:'choice',q:'Reflexivos no passado usam →',opts:['être','avoir'],a:'être'},
+      {type:'type',q:'eles levantam-se → ils ___ lèvent',a:'se'}
+    ]
+  },
+  {
+    id:'L17',title:'Le futur simple',sub:'-ai/-as/-a/-ons/-ez/-ont — your PT futuro',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <p>Stem = the infinitive (drop final -e on -re verbs) + <b>-ai, -as, -a, -ons, -ez, -ont</b>. parler → je parlerai · prendre → je prendrai.</p>
+        <p>Irregular stems: être → ser- · avoir → aur- · aller → ir- · faire → fer- · venir → viendr- · pouvoir → pourr- · voir → verr-.</p>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · PT futuro</span>
+        ↔ PT futuro (falarei, morarei). The endings echo <b>avoir</b> (ai, as, a, ons, ez, ont). Note: in speech the French often use the futur proche (je vais parler); the futur simple is more written — but you must recognise it.
+        <div class="ex"><span class="fr">L'année prochaine, j'habiterai à Genève.</span> = Para o ano, morarei em Genebra.</div></div>
+    `,
+    drills:[
+      {type:'type',q:'falarei → je ___ (parler)',a:'parlerai'},
+      {type:'type',q:'moraremos → nous ___ (habiter)',a:'habiterons'},
+      {type:'type',q:'serei → je ___ (être)',a:'serai'},
+      {type:'type',q:'terás → tu ___ (avoir)',a:'auras'},
+      {type:'type',q:'irão → ils ___ (aller)',a:'iront'},
+      {type:'type',q:'farei → je ___ (faire)',a:'ferai'},
+      {type:'choice',q:'"verra" vem de →',opts:['voir','venir'],a:'voir'},
+      {type:'type',q:'ela falará → elle ___ (parler)',a:'parlera'}
+    ]
+  },
+  {
+    id:'L18',title:'Comparatifs et superlatifs',sub:'plus / moins / aussi … que · le plus · meilleur vs mieux',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <p>Comparison: <b>plus … que</b> (more than), <b>moins … que</b> (less than), <b>aussi … que</b> (as … as).</p>
+        <p>Superlative: <b>le/la/les plus …</b>, <b>le/la/les moins …</b></p>
+        <p>Irregular: bon → <b>meilleur</b> (better, adjective); bien → <b>mieux</b> (better, adverb).</p>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · mostly maps to PT</span>
+        plus/moins/aussi … que ↔ mais/menos/tão … que. le plus ↔ o mais. Watch this: PT has one "melhor"; French splits <b>meilleur</b> (adjective) and <b>mieux</b> (adverb).
+        <div class="ex">Paul est <span class="fr">plus grand que</span> Marie. · C'est <span class="fr">le plus cher</span>.</div></div>
+    `,
+    drills:[
+      {type:'choice',q:'mais alto que → ___ grand que',opts:['plus','moins'],a:'plus'},
+      {type:'choice',q:'menos caro que → ___ cher que',opts:['moins','aussi'],a:'moins'},
+      {type:'choice',q:'tão rápido como → ___ rapide que',opts:['aussi','plus'],a:'aussi'},
+      {type:'type',q:'o mais caro → le ___ cher',a:'plus'},
+      {type:'choice',q:'este vinho é melhor (adj.) →',opts:['meilleur','mieux'],a:'meilleur'},
+      {type:'choice',q:'ele canta melhor (adv.) →',opts:['mieux','meilleur'],a:'mieux'},
+      {type:'type',q:'mais inteligente que → ___ intelligent que',a:'plus'},
+      {type:'choice',q:'o menos caro → le ___ cher',opts:['moins','plus'],a:'moins'}
+    ]
+  },
+  {
+    id:'L19',title:'Prépositions de lieu et pays',sub:'à / en / au — cities and countries (for Genève)',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <p><b>Cities:</b> à (à Genève, à Lisbonne). <b>Feminine countries / continents:</b> en (en Suisse, en France, en Europe). <b>Masculine countries:</b> au (au Portugal, au Canada). <b>Plural:</b> aux (aux États-Unis).</p>
+        <p>"At someone's place": <b>chez</b> (chez moi, chez le médecin). Most countries ending in -e are feminine → en.</p>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · finer than PT</span>
+        PT uses em/no/na (em Genebra, na Suíça, em Portugal). French splits <b>à</b> (city) vs <b>en/au</b> (country, by gender). "From" = de/du: <span class="fr">je viens du Portugal</span> = venho de Portugal.
+        <div class="ex"><span class="fr">J'habite à Genève, en Suisse.</span></div></div>
+    `,
+    drills:[
+      {type:'choice',q:'em Genebra (cidade) → ___ Genève',opts:['à','en'],a:'à'},
+      {type:'choice',q:'na Suíça (país fem.) → ___ Suisse',opts:['en','au'],a:'en'},
+      {type:'choice',q:'em Portugal (país masc.) → ___ Portugal',opts:['au','en'],a:'au'},
+      {type:'choice',q:'em França → ___ France',opts:['en','à'],a:'en'},
+      {type:'choice',q:'no Canadá (masc.) → ___ Canada',opts:['au','en'],a:'au'},
+      {type:'type',q:'em Lisboa → ___ Lisbonne',a:'à'},
+      {type:'choice',q:'em casa do médico → ___ le médecin',opts:['chez','à'],a:'chez'},
+      {type:'choice',q:'venho de Portugal → je viens ___ Portugal',opts:['du','de'],a:'du'}
+    ]
+  },
+  {
+    id:'L20',title:"L'impératif",sub:'giving orders — drop the subject (like PT)',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <p>Use the tu / nous / vous forms <b>without</b> the subject pronoun. For -er verbs, the <b>tu</b> form drops its final -s: <span class="fr">Parle ! Mange !</span> nous = "let's": <span class="fr">Parlons !</span> vous: <span class="fr">Parlez !</span></p>
+        <p>Irregular: être → sois/soyons/soyez · avoir → aie/ayons/ayez.</p>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · like PT imperativo</span>
+        ↔ PT imperativo (fala / falemos). French drops the subject just like PT. The only quirk: the -er "tu" loses its -s (parles → parle).
+        <div class="ex"><span class="fr">Tournez à droite !</span> = Vire à direita!</div></div>
+    `,
+    drills:[
+      {type:'choice',q:'"Fala!" (tu, parler) →',opts:['Parle !','Parles !'],a:'Parle !'},
+      {type:'type',q:'"Vire à direita!" → Tournez à ___ !',a:'droite'},
+      {type:'choice',q:'"Comamos!" (nous, manger) →',opts:['Mangeons !','Mangez !'],a:'Mangeons !'},
+      {type:'choice',q:'"Falem!" (vous, parler) →',opts:['Parlez !','Parle !'],a:'Parlez !'},
+      {type:'choice',q:'"Escuta!" (tu, écouter) →',opts:['Écoute !','Écoutes !'],a:'Écoute !'},
+      {type:'type',q:'"Esperem!" (vous, attendre) → ___ !',a:'attendez'},
+      {type:'choice',q:'imperativo de être (vous) →',opts:['soyez','êtes'],a:'soyez'},
+      {type:'choice',q:'No imperativo, o sujeito é →',opts:['omitido','obrigatório'],a:'omitido'}
     ]
   }
 ];
