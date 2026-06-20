@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cours de Français — le pont portugais</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root{
+    --ink:#10131c;
+    --panel:#171b29;
+    --panel-2:#1d2233;
+    --line:#2a3145;
+    --paper:#ece6d8;
+    --muted:#8d93a6;
+    --gold:#c9a24b;
+    --bleu:#6f8fd6;
+    --rouge:#d8503e;
+    --vert:#6f9a6b;
+    --serif:'Fraunces',Georgia,'Times New Roman',serif;
+    --sans:'Inter',system-ui,-apple-system,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--sans);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--gold);color:var(--ink)}
+
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px 80px}
+
+  header.top{
+    border-bottom:1px solid var(--line);
+    padding:26px 0 18px;
+    margin-bottom:8px;
+  }
+  .brandline{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .brand{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:30px;
+    letter-spacing:-.01em;
+    line-height:1;
+  }
+  .brand .fr{color:var(--gold)}
+  .bridge-tag{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--muted);
+    border:1px solid var(--line);
+    padding:4px 9px;
+    border-radius:2px;
+  }
+  .bridge-tag .pt{color:var(--bleu)}
+  .bridge-tag .ff{color:var(--gold)}
+
+  nav.tabs{display:flex;gap:4px;margin-top:18px;flex-wrap:wrap}
+  nav.tabs button{
+    font-family:var(--sans);
+    font-size:13.5px;
+    font-weight:500;
+    color:var(--muted);
+    background:transparent;
+    border:1px solid transparent;
+    border-radius:3px;
+    padding:8px 14px;
+    cursor:pointer;
+    transition:.15s;
+  }
+  nav.tabs button:hover{color:var(--paper)}
+  nav.tabs button.active{
+    color:var(--ink);
+    background:var(--gold);
+    font-weight:600;
+  }
+  nav.tabs button .n{
+    font-family:var(--mono);
+    font-size:10px;
+    opacity:.6;
+    margin-left:6px;
+  }
+
+  .view{display:none;animation:fade .25s ease}
+  .view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  h2.section{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:23px;
+    margin:30px 0 4px;
+    letter-spacing:-.01em;
+  }
+  .sub{color:var(--muted);font-size:14px;margin:0 0 20px}
+
+  /* dashboard */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:24px 0}
+  .stat{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:16px 14px;
+  }
+  .stat .v{font-family:var(--serif);font-size:30px;font-weight:600;line-height:1}
+  .stat .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+  .stat.gold .v{color:var(--gold)}
+  @media(max-width:620px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+  .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+  .cta{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-left:3px solid var(--gold);
+    border-radius:4px;
+    padding:14px 16px;
+    cursor:pointer;
+    flex:1 1 240px;
+    text-align:left;
+    color:var(--paper);
+    transition:.15s;
+  }
+  .cta:hover{background:#222842;transform:translateY(-1px)}
+  .cta .ch{font-weight:600;font-size:15px}
+  .cta .cs{color:var(--muted);font-size:13px;margin-top:2px}
+
+  .note{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:16px 18px;
+    margin-top:24px;
+    font-size:14px;
+    color:var(--muted);
+  }
+  .note b{color:var(--paper)}
+
+  /* lesson list */
+  .lesson-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+  .lrow{
+    display:flex;align-items:center;gap:14px;
+    background:var(--panel);border:1px solid var(--line);border-radius:5px;
+    padding:14px 16px;cursor:pointer;transition:.15s;
+  }
+  .lrow:hover{border-color:var(--gold)}
+  .lrow .idx{font-family:var(--mono);font-size:12px;color:var(--gold);width:24px}
+  .lrow .lt{font-weight:600;font-size:15px;flex:1}
+  .lrow .lt small{display:block;color:var(--muted);font-weight:400;font-size:12.5px;margin-top:1px;font-family:var(--sans)}
+  .lrow .badge{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .lrow .badge.done{color:var(--vert)}
+
+  /* lesson detail */
+  .panel{
+    background:var(--panel);border:1px solid var(--line);border-radius:6px;
+    padding:22px 24px;margin-top:16px;
+  }
+  .rule{
+    border-left:3px solid var(--bleu);
+    padding:2px 0 2px 16px;margin:18px 0;
+  }
+  .rule h4{margin:0 0 6px;font-family:var(--serif);font-weight:500;font-size:17px}
+  .rule p{margin:6px 0;font-size:14.5px}
+  .pt-contrast{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:12px 16px;margin:14px 0;font-size:14px;
+  }
+  .pt-contrast .lab{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--bleu);display:block;margin-bottom:5px}
+  .faux{
+    border-left-color:var(--rouge);
+  }
+  .faux .lab{color:var(--rouge)}
+  table.conjtab{border-collapse:collapse;width:100%;margin:14px 0;font-family:var(--mono);font-size:13.5px}
+  table.conjtab td{border:1px solid var(--line);padding:7px 11px}
+  table.conjtab td:first-child{color:var(--muted);width:90px}
+  table.conjtab td .fr{color:var(--gold)}
+  .ex{font-family:var(--mono);font-size:13px;background:var(--ink);border:1px solid var(--line);border-radius:4px;padding:9px 12px;margin:8px 0}
+  .ex .pt{color:var(--bleu)}
+  .ex .fr{color:var(--gold)}
+
+  /* drills / inputs */
+  .drill{margin-top:10px}
+  .q{font-size:15px;margin:18px 0 8px;font-weight:500}
+  .q .cue{font-family:var(--mono);color:var(--bleu)}
+  .opts{display:flex;gap:8px;flex-wrap:wrap}
+  .opt{
+    background:var(--panel-2);border:1px solid var(--line);color:var(--paper);
+    border-radius:4px;padding:9px 18px;cursor:pointer;font-family:var(--mono);font-size:14px;transition:.12s;
+  }
+  .opt:hover{border-color:var(--gold)}
+  .opt.right{background:rgba(111,154,107,.18);border-color:var(--vert);color:var(--vert)}
+  .opt.wrong{background:rgba(216,80,62,.16);border-color:var(--rouge);color:var(--rouge)}
+  input.txt{
+    background:var(--ink);border:1px solid var(--line);color:var(--paper);
+    border-radius:4px;padding:10px 13px;font-family:var(--mono);font-size:15px;width:100%;max-width:340px;
+  }
+  input.txt:focus{outline:none;border-color:var(--gold)}
+  .btn{
+    background:var(--gold);color:var(--ink);border:none;border-radius:4px;
+    padding:10px 20px;font-weight:600;font-size:14px;cursor:pointer;font-family:var(--sans);
+  }
+  .btn:hover{filter:brightness(1.06)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--paper)}
+  .btn.ghost:hover{border-color:var(--gold)}
+  .btnrow{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;align-items:center}
+  .verdict{font-family:var(--mono);font-size:13px;margin-top:10px;min-height:18px}
+  .verdict.ok{color:var(--vert)}
+  .verdict.no{color:var(--rouge)}
+  .verdict.warn{color:var(--gold)}
+
+  /* flashcard */
+  .card-stage{text-align:center;padding:30px 0}
+  .card-prompt-lab{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .card-prompt{font-family:var(--serif);font-size:38px;font-weight:500;margin:10px 0}
+  .card-prompt.pt{color:var(--bleu)}
+  .card-ans{font-family:var(--serif);font-size:34px;color:var(--gold);min-height:42px;margin:8px 0}
+  .card-meta{color:var(--muted);font-size:13.5px;max-width:480px;margin:6px auto 0}
+  .ffstamp{
+    display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--rouge);border:1px solid var(--rouge);border-radius:2px;padding:2px 7px;margin-top:8px;
+  }
+  .progressbar{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin:4px 0 24px}
+  .progressbar i{display:block;height:100%;background:var(--gold);width:0;transition:.3s}
+
+  .empty{color:var(--muted);font-size:14.5px;padding:30px 0;text-align:center}
+  .mode-toggle{display:flex;gap:6px;margin:4px 0 18px}
+  .mode-toggle button{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);background:var(--panel);border:1px solid var(--line);padding:6px 12px;border-radius:3px;cursor:pointer}
+  .mode-toggle button.active{color:var(--ink);background:var(--bleu);border-color:var(--bleu);font-weight:600}
+
+  select.verbsel{background:var(--ink);color:var(--paper);border:1px solid var(--line);border-radius:4px;padding:9px 12px;font-family:var(--mono);font-size:14px}
+  .conj-grid{display:grid;grid-template-columns:90px 1fr;gap:8px;align-items:center;margin-top:16px;max-width:420px}
+  .conj-grid .pn{font-family:var(--mono);color:var(--muted);font-size:14px}
+  .conj-grid input{background:var(--ink);border:1px solid var(--line);color:var(--paper);border-radius:4px;padding:8px 11px;font-family:var(--mono);font-size:14.5px}
+  .conj-grid input.ok{border-color:var(--vert);color:var(--vert)}
+  .conj-grid input.no{border-color:var(--rouge);color:var(--rouge)}
+
+  footer{border-top:1px solid var(--line);margin-top:50px;padding-top:16px;color:var(--muted);font-size:12px;font-family:var(--mono)}
+  .reset{background:none;border:none;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:12px;font-family:var(--mono)}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  /* ====== PASTE YOUR SUPABASE VALUES BETWEEN THE QUOTES ====== */
+  window.SUPA_URL = "https://oxlyeerhgczsrlabhimo.supabase.coL";
+  window.SUPA_KEY = "sb_publishable_C9I4vXMvrUsLvmuyvX8Oyw_1eQ4Hv7i";
+  /* =========================================================== */
+</script>
+</head>
+<body>
+<div id="authGate" style="display:none;align-items:center;justify-content:center;min-height:100vh;padding:20px">
+  <div style="max-width:380px;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:28px">
+    <div class="brand" style="font-size:24px;margin-bottom:4px">Cours de <span class="fr">Français</span></div>
+    <p class="sub" style="margin:0 0 18px">Sign in to track your own progress.</p>
+    <input class="txt" id="authEmail" type="email" autocomplete="username" placeholder="email" style="width:100%;max-width:none;margin-bottom:10px">
+    <input class="txt" id="authPass" type="password" autocomplete="current-password" placeholder="password (min 6 characters)" style="width:100%;max-width:none;margin-bottom:14px">
+    <div class="btnrow" style="margin-top:0">
+      <button class="btn" id="authSignin">Sign in</button>
+      <button class="btn ghost" id="authSignup">Create account</button>
+    </div>
+    <div class="verdict" id="authMsg" style="margin-top:12px"></div>
+  </div>
+</div>
+<div class="wrap" style="display:none">
+  <header class="top">
+    <div class="brandline">
+      <div class="brand">Cours de <span class="fr">Français</span></div>
+      <span class="bridge-tag"><span class="pt">PORTUGAIS</span> → FRANÇAIS · <span class="ff">faux amis</span> signalés</span>
+    </div>
+    <nav class="tabs" id="tabs">
+      <button data-v="today" class="active">Aujourd'hui</button>
+      <button data-v="home">Tableau de bord</button>
+      <button data-v="lessons">Grammaire <span class="n" id="ln"></span></button>
+      <button data-v="vocab">Vocabulaire <span class="n" id="vn"></span></button>
+      <button data-v="conj">Conjugaison</button>
+      <button data-v="atelier">Atelier IA</button>
+    </nav>
+  </header>
+
+  <!-- TODAY -->
+  <section class="view active" id="view-today">
+    <h2 class="section">Aujourd'hui — <span id="todayDate" style="color:var(--gold)"></span></h2>
+    <p class="sub">Your plan for today. It changes every day: due reviews shift, the verb of the day rotates, the next lesson advances, and the Atelier writes something genuinely new.</p>
+    <div class="stats" style="grid-template-columns:repeat(2,1fr);max-width:360px">
+      <div class="stat gold"><div class="v" id="todayStreak">0</div><div class="k">Day streak</div></div>
+      <div class="stat"><div class="v" id="todayProg">0/0</div><div class="k">Lessons done</div></div>
+    </div>
+    <div class="cta-row" id="todayPlan" style="flex-direction:column"></div>
+  </section>
+
+  <!-- HOME -->
+  <section class="view" id="view-home">
+    <h2 class="section">Bonjour, Renato.</h2>
+    <p class="sub">A1 → A2. Standard French, built off European Portuguese. Drill here daily; bring your written production to chat.</p>
+    <div class="stats" id="stats"></div>
+    <div class="cta-row" id="ctaRow"></div>
+    <div class="note">
+      <b>How this is split.</b> Mechanical reps — gender, vocab, conjugation — live here and cost nothing to run. Save chat for what needs a brain: marking your free sentences, dissecting recurring errors, deciding what to drill next. The app tracks what you've done so those chat sessions stay targeted.
+    </div>
+  </section>
+
+  <!-- LESSONS -->
+  <section class="view" id="view-lessons">
+    <h2 class="section">Grammaire</h2>
+    <p class="sub">Each lesson: the rule, the logic, the Portuguese contrast, then a drill. Order matters — they build.</p>
+    <div class="lesson-list" id="lessonList"></div>
+    <div id="lessonDetail"></div>
+  </section>
+
+  <!-- VOCAB -->
+  <section class="view" id="view-vocab">
+    <h2 class="section">Vocabulaire</h2>
+    <p class="sub">Spaced repetition (Leitner). Produce the French — don't just recognise it. Words you miss come back sooner.</p>
+    <div class="mode-toggle" id="vocabMode">
+      <button data-m="produce" class="active">Produce (PT → FR, type it)</button>
+      <button data-m="recognise">Recognise (FR → meaning)</button>
+    </div>
+    <div id="vocabStage"></div>
+  </section>
+
+  <!-- CONJUGATION -->
+  <section class="view" id="view-conj">
+    <h2 class="section">Conjugaison</h2>
+    <p class="sub">Pick a verb and a tense. Type all six forms, then check. Silent endings still have to be spelled right.</p>
+    <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+      <select class="verbsel" id="verbSel"></select>
+      <select class="verbsel" id="tenseSel"></select>
+    </div>
+    <div id="conjStage"></div>
+  </section>
+
+  <!-- ATELIER -->
+  <section class="view" id="view-atelier">
+    <h2 class="section">Atelier du jour</h2>
+    <p class="sub">A practical translation set, themed and rotating <b>every day</b> — free, works offline, no API needed. Want something brand-new on a theme you choose? The AI generator can write one, but it needs the chat app's API access and uses a little credit.</p>
+    <div class="btnrow">
+      <button class="btn" id="atGen">Leçon du jour (free)</button>
+      <input class="txt" id="atTheme" placeholder="thème pour l'IA : au restaurant…" style="max-width:240px">
+      <button class="btn ghost" id="atNew">Générer avec l'IA (credits)</button>
+    </div>
+    <p class="sub" style="margin-top:8px;font-size:12.5px">Punctuation, capitals and accents are ignored when checking. Translations can have more than one right answer — use "Show" to self-check, or bring tricky ones to chat.</p>
+    <div id="atelierStage"></div>
+  </section>
+
+  <footer>
+    cours-de-francais · v2<span id="acctInfo"></span> ·
+    <button class="reset" id="signOut">sign out</button> ·
+    <button class="reset" id="resetBtn">reset my progress</button>
+  </footer>
+</div>
+
+<script>
+/* ---------------- storage shim (Supabase per-user -> window.storage -> memory) ---------------- */
+const mem={};
+const store={
+  async get(k){
+    if(SB&&USER){
+      try{
+        const {data,error}=await SB.from('progress').select('state').eq('id',USER.id).maybeSingle();
+        if(error) return null;
+        if(data&&data.state!=null) return (typeof data.state==='string')?data.state:JSON.stringify(data.state);
+        return null;
+      }catch(e){ return null; }
+    }
+    try{ if(window.storage){const r=await window.storage.get(k,false); return r?r.value:null;} }
+    catch(e){ return null; }
+    return (k in mem)?mem[k]:null;
+  },
+  async set(k,v){
+    if(SB&&USER){
+      try{ await SB.from('progress').upsert({id:USER.id,state:JSON.parse(v),updated_at:new Date().toISOString()}); return; }catch(e){}
+    }
+    try{ if(window.storage){await window.storage.set(k,v,false); return;} }catch(e){}
+    mem[k]=v;
+  }
+};
+const STATE_KEY='frcourse:state';
+
+/* ---------------- data: vocabulary deck ---------------- */
+// id, fr (with article for nouns), pt, meaning(en hint), note, ff (false friend?)
+const DECK=[
+  {id:'w1',fr:'bonjour',pt:'bom dia / olá',note:'bon (bom) + jour (dia).'},
+  {id:'w2',fr:'merci',pt:'obrigado/a',note:'No cognate — pure memorisation.'},
+  {id:'w3',fr:"s'il vous plaît",pt:'por favor',note:'Literally "if it pleases you". Informal: s\'il te plaît.'},
+  {id:'w4',fr:'oui',pt:'sim'},
+  {id:'w5',fr:'non',pt:'não'},
+  {id:'w6',fr:'au revoir',pt:'adeus / até logo'},
+  {id:'w7',fr:'excusez-moi',pt:'desculpe / com licença'},
+  {id:'w8',fr:'de rien',pt:'de nada'},
+  {id:'w9',fr:'la maison',pt:'a casa',note:'Feminine, like a casa.'},
+  {id:'w10',fr:'le travail',pt:'o trabalho'},
+  {id:"w11",fr:"l'eau",pt:'a água',note:'Feminine (l\'eau). Silent ending.'},
+  {id:'w12',fr:'le pain',pt:'o pão'},
+  {id:'w13',fr:'le vin',pt:'o vinho'},
+  {id:'w14',fr:'la ville',pt:'a cidade'},
+  {id:'w15',fr:'le pays',pt:'o país'},
+  {id:'w16',fr:'la rue',pt:'a rua'},
+  {id:'w17',fr:"l'argent",pt:'o dinheiro',note:'Masculine. Also means "silver".'},
+  {id:'w18',fr:'le temps',pt:'o tempo',note:'Time AND weather — like PT tempo.'},
+  {id:'w19',fr:'le jour',pt:'o dia'},
+  {id:'w20',fr:'la nuit',pt:'a noite'},
+  {id:"w21",fr:"l'année",pt:'o ano',note:'Feminine in French, masculine in PT — gender flips.'},
+  {id:'w22',fr:'la femme',pt:'a mulher / a esposa'},
+  {id:"w23",fr:"l'homme",pt:'o homem',note:'Silent h, silent final consonants.'},
+  {id:"w24",fr:"l'enfant",pt:'a criança',note:'Can be m or f.'},
+  {id:'w25',fr:'le magasin',pt:'a loja',ff:true,note:'FAUX AMI: not "magazine". A shop.'},
+  {id:'w26',fr:'le bureau',pt:'o escritório / a secretária',note:'Office AND desk.'},
+  {id:'w27',fr:'la voiture',pt:'o carro',note:'Gender flips: feminine here.'},
+  {id:'w28',fr:'la gare',pt:'a estação (de comboios)',ff:true,note:'FAUX AMI: not "garagem". Train station.'},
+  {id:"w29",fr:"l'avion",pt:'o avião',note:'Masculine (un avion).'},
+  {id:'w30',fr:'la mer',pt:'o mar',note:'Gender flips: feminine in French, masculine in PT.'},
+  {id:'w31',fr:'le voyage',pt:'a viagem',note:'Gender flips: masculine in French.'},
+  {id:'w32',fr:'grand / grande',pt:'grande'},
+  {id:'w33',fr:'petit / petite',pt:'pequeno/a'},
+  {id:'w34',fr:'bon / bonne',pt:'bom / boa'},
+  {id:'w35',fr:'nouveau',pt:'novo'},
+  {id:'w36',fr:'beau / belle',pt:'belo / bonito'},
+  {id:'w37',fr:'attendre',pt:'esperar',ff:true,note:'FAUX AMI: not "atender". Means to wait.'},
+  {id:'w38',fr:'rester',pt:'ficar / permanecer',ff:true,note:'FAUX AMI: not "restar/descansar". To stay.'},
+  {id:'w39',fr:'quitter',pt:'sair de / deixar',ff:true,note:'FAUX AMI: not "ficar calado". To leave (a place/person).'},
+  {id:'w40',fr:'demander',pt:'perguntar / pedir',ff:true,note:'FAUX AMI: not "exigir". To ask.'},
+  {id:'w41',fr:'être constipé(e)',pt:'estar com prisão de ventre',ff:true,note:'FAUX AMI: NOT "constipado/resfriado". Means constipated. A cold = être enrhumé.'},
+  {id:'w42',fr:'blesser',pt:'ferir / magoar',ff:true,note:'FAUX AMI: not "abençoar". To wound/hurt.'},
+  {id:'w43',fr:'aujourd\'hui',pt:'hoje'},
+  {id:'w44',fr:'demain',pt:'amanhã'},
+  {id:'w45',fr:'hier',pt:'ontem'},
+  {id:'w46',fr:'maintenant',pt:'agora'},
+  {id:'w47',fr:'toujours',pt:'sempre'},
+  {id:'w48',fr:'beaucoup',pt:'muito'},
+  {id:'w49',fr:'parce que',pt:'porque'},
+  {id:'w50',fr:'avec',pt:'com'},
+  {id:'w51',fr:'sans',pt:'sem'},
+  {id:'w52',fr:'pour',pt:'para / por'},
+  {id:'w53',fr:'mais',pt:'mas'},
+  {id:'w54',fr:'aussi',pt:'também'},
+  {id:'w55',fr:'ici',pt:'aqui'},
+  {id:'w56',fr:'là-bas',pt:'ali / lá'},
+  {id:'w57',fr:'le prénom',pt:'o nome próprio',note:'First name (pré + nom).'},
+  {id:'w58',fr:'avoir besoin de',pt:'precisar de'},
+  {id:'w59',fr:'avoir envie de',pt:'ter vontade de / apetecer'},
+  {id:'w60',fr:'il y a',pt:'há / existe',note:'"there is/are" — fixed expression.'},
+  {id:'w61',fr:'le café',pt:'o café'},
+  {id:'w62',fr:'le petit-déjeuner',pt:'o pequeno-almoço',note:'Breakfast. déjeuner on its own = lunch.'},
+  {id:'w63',fr:'le déjeuner',pt:'o almoço',ff:true,note:'FAUX AMI: lunch, not breakfast.'},
+  {id:'w64',fr:'le dîner',pt:'o jantar'},
+  {id:'w65',fr:'la viande',pt:'a carne'},
+  {id:'w66',fr:'le poisson',pt:'o peixe'},
+  {id:'w67',fr:'le fromage',pt:'o queijo'},
+  {id:'w68',fr:'les légumes',pt:'os legumes / os vegetais'},
+  {id:'w69',fr:"l'addition",pt:'a conta (no restaurante)',note:"Feminine. «L'addition, s'il vous plaît.»"},
+  {id:'w70',fr:'le marché',pt:'o mercado'},
+  {id:'w71',fr:'la boulangerie',pt:'a padaria'},
+  {id:'w72',fr:'manquer',pt:'faltar / sentir falta',ff:true,note:'"Tu me manques" = sinto a tua falta — inverted word order vs PT.'},
+  {id:'w73',fr:'la banque',pt:'o banco'}
+];
+
+/* ---------------- data: lessons ---------------- */
+const LESSONS=[
+  {
+    id:'L1',title:'Le genre et les articles',sub:'gender, le/la/un/une, and the -e trap',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <p>Every French noun is masculine or feminine — exactly like Portuguese. The articles map cleanly:</p>
+        <p><b>Definite:</b> <span class="ex" style="display:inline-block;margin:4px 0">le (o) · la (a) · l' (before vowel/h) · les (os/as)</span></p>
+        <p><b>Indefinite:</b> <span class="ex" style="display:inline-block;margin:4px 0">un (um) · une (uma) · des (uns/umas)</span></p>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · o sistema é idêntico</span>
+        PT o/a/os/as ↔ FR le/la/les; um/uma ↔ un/une. The machinery is the same, so don't relearn it — just map it.</div>
+      <div class="pt-contrast faux"><span class="lab">piège · the -e trap</span>
+        A final <b>-e</b> does <b>not</b> mean feminine. <span class="ex" style="display:inline-block">le problème, le système, le programme, le téléphone</span> are all masculine — just as PT keeps <i>o</i> problema, <i>o</i> sistema. Trust the PT instinct on Greek-root -ema/-ama words.</div>
+      <div class="pt-contrast faux"><span class="lab">piège · gender sometimes flips</span>
+        Same word, opposite gender across the two languages: <b>la</b> mer (<b>o</b> mar), <b>le</b> voyage (<b>a</b> viagem), <b>la</b> voiture, <b>l'année</b> (f) vs <b>o</b> ano. You must memorise these individually.</div>
+    `,
+    drills:[
+      {type:'choice',q:'___ maison',opts:['le','la'],a:'la'},
+      {type:'choice',q:'___ problème',opts:['le','la'],a:'le'},
+      {type:'choice',q:'___ mer (≠ o mar!)',opts:['le','la'],a:'la'},
+      {type:'choice',q:'___ voyage (≠ a viagem!)',opts:['le','la'],a:'le'},
+      {type:'choice',q:'___ système',opts:['le','la'],a:'le'}
+    ]
+  },
+  {
+    id:'L2',title:'Les pronoms + ÊTRE',sub:'to be — and why it is easier than Portuguese',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <table class="conjtab">
+          <tr><td>je</td><td><span class="fr">suis</span></td></tr>
+          <tr><td>tu</td><td><span class="fr">es</span></td></tr>
+          <tr><td>il / elle</td><td><span class="fr">est</span></td></tr>
+          <tr><td>nous</td><td><span class="fr">sommes</span></td></tr>
+          <tr><td>vous</td><td><span class="fr">êtes</span></td></tr>
+          <tr><td>ils / elles</td><td><span class="fr">sont</span></td></tr>
+        </table>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · one verb, not two</span>
+        French <b>être</b> collapses PT <b>ser</b> AND <b>estar</b> into a single verb. No ser/estar decision to make.
+        <div class="ex"><span class="fr">Je suis portugais.</span> = Sou português. &nbsp;|&nbsp; <span class="fr">Je suis fatigué.</span> = Estou cansado.</div></div>
+      <div class="pt-contrast"><span class="lab">attention · vous</span>
+        <b>vous</b> = formal "você" AND plural "vocês". <b>tu</b> = informal singular only. In Geneva, default to <b>vous</b> with strangers.</div>
+    `,
+    drills:[
+      {type:'type',q:'je ___ (eu sou/estou)',a:'suis'},
+      {type:'type',q:'nous ___ (nós somos)',a:'sommes'},
+      {type:'type',q:'vous ___ (vocês são)',a:'êtes'},
+      {type:'choice',q:'Sou português →',opts:['Je suis portugais','J\'ai portugais'],a:'Je suis portugais'},
+      {type:'type',q:'ils ___ (eles são)',a:'sont'}
+    ]
+  },
+  {
+    id:'L3',title:'AVOIR',sub:'to have — and the age trick you already know',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <table class="conjtab">
+          <tr><td>j'</td><td><span class="fr">ai</span></td></tr>
+          <tr><td>tu</td><td><span class="fr">as</span></td></tr>
+          <tr><td>il / elle</td><td><span class="fr">a</span></td></tr>
+          <tr><td>nous</td><td><span class="fr">avons</span></td></tr>
+          <tr><td>vous</td><td><span class="fr">avez</span></td></tr>
+          <tr><td>ils / elles</td><td><span class="fr">ont</span></td></tr>
+        </table>
+        <p><b>je → j'</b> before a vowel: <i>j'ai</i>, never "je ai".</p>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · avoir = ter</span>
+        Possession works like PT <b>ter</b>.
+        <div class="ex"><span class="fr">J'ai deux frères.</span> = <span class="pt">Tenho dois irmãos.</span></div></div>
+      <div class="pt-contrast"><span class="lab">le pont · age</span>
+        Age uses <b>avoir</b>, exactly like PT — "to have X years", not English "to be".
+        <div class="ex"><span class="fr">J'ai trente ans.</span> = <span class="pt">Tenho trinta anos.</span></div></div>
+    `,
+    drills:[
+      {type:'type',q:"eu tenho → j'___",a:'ai'},
+      {type:'type',q:'nós temos → nous ___',a:'avons'},
+      {type:'type',q:'eles têm → ils ___',a:'ont'},
+      {type:'choice',q:'Tenho 30 anos →',opts:["J'ai trente ans","Je suis trente ans"],a:"J'ai trente ans"},
+      {type:'type',q:'tu tens → tu ___',a:'as'}
+    ]
+  },
+  {
+    id:'L4',title:'Les verbes en -ER',sub:'the regular family (≈ PT -ar) and the silent-ending trap',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <p>Most French verbs end in <b>-er</b> and conjugate identically. Drop -er, add: <b>-e, -es, -e, -ons, -ez, -ent</b>.</p>
+        <table class="conjtab">
+          <tr><td>je</td><td>parl<span class="fr">e</span></td></tr>
+          <tr><td>tu</td><td>parl<span class="fr">es</span></td></tr>
+          <tr><td>il/elle</td><td>parl<span class="fr">e</span></td></tr>
+          <tr><td>nous</td><td>parl<span class="fr">ons</span></td></tr>
+          <tr><td>vous</td><td>parl<span class="fr">ez</span></td></tr>
+          <tr><td>ils/elles</td><td>parl<span class="fr">ent</span></td></tr>
+        </table>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · the -ar family</span>
+        PT -ar verbs are the parallel set: parler↔falar, habiter↔habitar, travailler↔trabalhar, aimer↔amar.</div>
+      <div class="pt-contrast faux"><span class="lab">piège · silent endings</span>
+        <b>je parle, tu parles, il parle, ils parlent</b> are spelled differently but sound <b>identical</b> ("parl"). Only <b>nous</b> (-ons) and <b>vous</b> (-ez) are audibly distinct. Unlike PT, where every ending is pronounced — so you must spell endings you can't hear.</div>
+    `,
+    drills:[
+      {type:'type',q:'falo → je ___ (parler)',a:'parle'},
+      {type:'type',q:'moramos → nous ___ (habiter)',a:'habitons'},
+      {type:'type',q:'eles trabalham → ils ___ (travailler)',a:'travaillent'},
+      {type:'type',q:'tu falas → tu ___ (parler)',a:'parles'},
+      {type:'type',q:'vocês moram → vous ___ (habiter)',a:'habitez'}
+    ]
+  },
+  {
+    id:'L5',title:'La négation',sub:'ne … pas — the sandwich',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <p>Negation wraps the verb in two pieces: <b>ne</b> + verb + <b>pas</b>.</p>
+        <div class="ex"><span class="fr">Je ne parle pas anglais.</span> = Não falo inglês.</div>
+        <p><b>ne → n'</b> before a vowel: <span class="fr">Je n'ai pas.</span></p>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · one piece vs two</span>
+        PT uses a single <b>não</b> in front of the verb (não falo). French brackets the verb on both sides. Forgetting <b>pas</b> is the classic Portuguese-speaker error.</div>
+      <div class="pt-contrast"><span class="lab">à l'oral · spoken shortcut</span>
+        In speech the <b>ne</b> often vanishes ("je parle pas"). Fine to hear, but <b>write both parts</b>.</div>
+    `,
+    drills:[
+      {type:'choice',q:'Não falo francês →',opts:['Je ne parle pas français','Je parle pas non français'],a:'Je ne parle pas français'},
+      {type:'type',q:'Fill the gap: Je ___ ai pas (n\' or ne?)',a:"n'"},
+      {type:'choice',q:'Ele não tem →',opts:["Il n'a pas","Il ne a pas"],a:"Il n'a pas"},
+      {type:'choice',q:'Nós não trabalhamos →',opts:['Nous ne travaillons pas','Nous travaillons ne pas'],a:'Nous ne travaillons pas'},
+      {type:'type',q:'eu não sou → je ne ___ pas (être)',a:'suis'}
+    ]
+  },
+  {
+    id:'L6',title:'Les questions',sub:'three ways to ask + question words',
+    html:`
+      <div class="rule"><h4>The rule — three registers</h4>
+        <p><b>1 · Intonation</b> (casual): <span class="fr">Tu parles français ?</span></p>
+        <p><b>2 · est-ce que</b> (neutral, safest): <span class="fr">Est-ce que tu parles français ?</span></p>
+        <p><b>3 · Inversion</b> (formal): <span class="fr">Parlez-vous français ?</span></p>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · est-ce que</span>
+        PT asks by intonation alone (Falas francês?). French adds <b>est-ce que</b> as a fixed spoken question-marker with no PT equivalent — read it as an audible "?". For Geneva, <b>est-ce que</b> + <b>vous</b> is your default polite question.</div>
+      <table class="conjtab">
+        <tr><td>qui</td><td>quem</td></tr><tr><td>que / quoi</td><td>que / o quê</td></tr>
+        <tr><td>où</td><td>onde</td></tr><tr><td>quand</td><td>quando</td></tr>
+        <tr><td>comment</td><td>como</td></tr><tr><td>pourquoi</td><td>porquê</td></tr>
+        <tr><td>combien</td><td>quanto</td></tr>
+      </table>
+    `,
+    drills:[
+      {type:'type',q:'"onde" em francês →',a:'où'},
+      {type:'type',q:'"quando" em francês →',a:'quand'},
+      {type:'choice',q:'Polite "Do you speak French?" →',opts:['Est-ce que vous parlez français ?','Vous parlez-vous français ?'],a:'Est-ce que vous parlez français ?'},
+      {type:'type',q:'"quanto" em francês →',a:'combien'},
+      {type:'type',q:'"como" em francês →',a:'comment'}
+    ]
+  },
+  {
+    id:'L7',title:'Les nombres 0–69',sub:'recognisable up to 60 — then the arithmetic starts',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <table class="conjtab">
+          <tr><td>0–10</td><td>zéro un deux trois quatre cinq six sept huit neuf dix</td></tr>
+          <tr><td>11–16</td><td>onze douze treize quatorze quinze seize</td></tr>
+          <tr><td>17–19</td><td>dix-sept dix-huit dix-neuf</td></tr>
+          <tr><td>tens</td><td>vingt(20) trente(30) quarante(40) cinquante(50) soixante(60)</td></tr>
+        </table>
+        <p><b>21, 31, 41…</b> insert <b>et</b>: vingt <b>et</b> un, trente <b>et</b> un. Otherwise hyphenate: vingt-deux, soixante-trois.</p>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · familiar to 60</span>
+        cinq↔cinco, six↔seis, dix↔dez, vingt↔vinte, trente↔trinta. Easy recognition up to 60.</div>
+      <div class="pt-contrast faux"><span class="lab">piège · 70 / 80 / 90 (preview)</span>
+        Standard French does maths: <b>70 = soixante-dix</b> (60+10), <b>80 = quatre-vingts</b> (4×20), <b>90 = quatre-vingt-dix</b>. (Switzerland uses the simpler septante/huitante/nonante — but you chose standard French, so learn the arithmetic.)</div>
+    `,
+    drills:[
+      {type:'type',q:'17 →',a:'dix-sept'},
+      {type:'type',q:'21 →',a:'vingt et un'},
+      {type:'type',q:'40 →',a:'quarante'},
+      {type:'type',q:'15 →',a:'quinze'},
+      {type:'type',q:'60 →',a:'soixante'}
+    ]
+  },
+  {
+    id:'L8',title:'Les adjectifs (accord)',sub:'agreement and position — let PT guide you, not English',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <p>Adjectives agree in gender and number: usually add <b>-e</b> (feminine) and <b>-s</b> (plural). petit → petite → petits → petites.</p>
+        <p>Most adjectives go <b>after</b> the noun. A small set (bon, beau, grand, petit, jeune, joli, nouveau) go before.</p>
+        <div class="ex">une <span class="fr">grande</span> maison · un livre <span class="fr">intéressant</span> · des <span class="fr">petits</span> enfants</div>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · PT is the model</span>
+        PT agrees the same way (pequeno/pequena/pequenos) and also places most adjectives <b>after</b> the noun (um livro interessante). Follow your Portuguese instinct, not English, which puts them before.</div>
+      <div class="pt-contrast faux"><span class="lab">piège · silent vs sounded</span>
+        The feminine -e often makes a silent consonant audible: <b>petit</b> ("p'ti") → <b>petite</b> ("p'tit"). You finally hear the gender you couldn't hear in the masculine.</div>
+    `,
+    drills:[
+      {type:'choice',q:'casa pequena → une maison ___',opts:['petit','petite'],a:'petite'},
+      {type:'choice',q:'a big house →',opts:['une grande maison','une maison grande'],a:'une grande maison'},
+      {type:'type',q:'uns livros interessantes → des livres ___',a:'intéressants'},
+      {type:'choice',q:'um carro vermelho →',opts:['une voiture rouge','une rouge voiture'],a:'une voiture rouge'},
+      {type:'type',q:'bom (feminino) →',a:'bonne'}
+    ]
+  },
+  {
+    id:'L9',title:'Les articles partitifs',sub:'du / de la / des — the "some" you keep dropping',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <p>For an unspecified quantity ("some"), French <b>requires</b> a partitive article: <b>du</b> (m), <b>de la</b> (f), <b>de l'</b> (vowel), <b>des</b> (plural).</p>
+        <div class="ex"><span class="fr">Je mange du pain.</span> · <span class="fr">Je bois de l'eau.</span> · <span class="fr">Je mange des légumes.</span></div>
+        <p>After a negation it collapses to <b>de / d'</b>: <span class="fr">Je ne bois pas de café.</span></p>
+      </div>
+      <div class="pt-contrast faux"><span class="lab">piège · the #1 Portuguese error</span>
+        PT uses <b>no</b> article here — "como pão", "bebo água". French forces du/de la/des, and Portuguese speakers constantly omit it.
+        <div class="ex"><span class="fr">Je mange du pain.</span> = <span class="pt">Como pão.</span></div></div>
+    `,
+    drills:[
+      {type:'choice',q:'Bebo água → Je bois ___ eau',opts:["de l'",'la'],a:"de l'"},
+      {type:'choice',q:'Como pão → Je mange ___ pain',opts:['du','le'],a:'du'},
+      {type:'type',q:'Como legumes → Je mange ___ légumes',a:'des'},
+      {type:'choice',q:'Não bebo café → Je ne bois pas ___ café',opts:['de','du'],a:'de'},
+      {type:'choice',q:'Bebo vinho → Je bois ___ vin',opts:['du','de'],a:'du'}
+    ]
+  },
+  {
+    id:'L10',title:'Le futur proche',sub:'aller + infinitif — identical to PT ir + infinitivo',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <p>Near future = <b>aller</b> (present) + infinitive.</p>
+        <div class="ex"><span class="fr">Je vais manger.</span> · <span class="fr">Nous allons partir.</span> · <span class="fr">Ils vont arriver.</span></div>
+        <p>aller: vais · vas · va · allons · allez · vont</p>
+      </div>
+      <div class="pt-contrast"><span class="lab">le pont · a free win</span>
+        This is <b>identical</b> to PT <b>ir + infinitivo</b>. aller ↔ ir.
+        <div class="ex"><span class="fr">Je vais habiter à Genève.</span> = <span class="pt">Vou morar em Genebra.</span></div></div>
+    `,
+    drills:[
+      {type:'type',q:'vou comer → je vais ___',a:'manger'},
+      {type:'choice',q:'vamos partir → nous ___ partir',opts:['allons','allez'],a:'allons'},
+      {type:'type',q:'eles vão falar → ils ___ parler',a:'vont'},
+      {type:'choice',q:'vais trabalhar → tu ___ travailler',opts:['vas','va'],a:'vas'},
+      {type:'type',q:'vou morar → je vais ___ (habiter)',a:'habiter'}
+    ]
+  },
+  {
+    id:'L11',title:'Le passé composé (avoir)',sub:'the everyday past — covers PT "falei", not just "tenho falado"',
+    html:`
+      <div class="rule"><h4>The rule</h4>
+        <p><b>avoir</b> (present) + past participle. For -er verbs the participle ends in <b>-é</b>: parler → parlé.</p>
+        <div class="ex"><span class="fr">J'ai parlé.</span> · <span class="fr">Tu as mangé.</span> · <span class="fr">Il a travaillé.</span></div>
+        <p>Most verbs take avoir; a few movement/state verbs take être (covered later).</p>
+      </div>
+      <div class="pt-contrast faux"><span class="lab">piège · usage, not structure</span>
+        The structure looks like PT <b>ter + particípio</b>, but the <b>meaning is wider</b>: French passé composé is the normal spoken past — it covers PT <b>pretérito perfeito</b> (falei), not only "tenho falado".
+        <div class="ex"><span class="fr">Hier, j'ai mangé au restaurant.</span> = <span class="pt">Ontem comi no restaurante.</span></div></div>
+    `,
+    drills:[
+      {type:'type',q:"falei → j'ai ___ (parler)",a:'parlé'},
+      {type:'type',q:'comemos → nous avons ___ (manger)',a:'mangé'},
+      {type:'choice',q:'ele trabalhou → il ___ travaillé',opts:['a','est'],a:'a'},
+      {type:'type',q:'moraste → tu as ___ (habiter)',a:'habité'},
+      {type:'choice',q:'comi →',opts:["j'ai mangé",'je mange'],a:"j'ai mangé"}
+    ]
+  }
+];
+
+/* ---------------- data: conjugation verbs ---------------- */
+// forms: [je, tu, il, nous, vous, ils] — verb portion only. jeElide => show j'
+// pres = present (verb part only); nousPres feeds the imparfait stem; futStem feeds futur+conditionnel;
+// pp = past participle; aux = passé composé auxiliary; imp = full override (only for être)
+const VERBS=[
+  {id:'etre',inf:'être',pt:'ser/estar',pres:['suis','es','est','sommes','êtes','sont'],nousPres:'sommes',futStem:'ser',pp:'été',aux:'avoir',imp:['étais','étais','était','étions','étiez','étaient']},
+  {id:'avoir',inf:'avoir',pt:'ter',pres:['ai','as','a','avons','avez','ont'],nousPres:'avons',futStem:'aur',pp:'eu',aux:'avoir'},
+  {id:'aller',inf:'aller',pt:'ir',pres:['vais','vas','va','allons','allez','vont'],nousPres:'allons',futStem:'ir',pp:'allé',aux:'être'},
+  {id:'faire',inf:'faire',pt:'fazer',pres:['fais','fais','fait','faisons','faites','font'],nousPres:'faisons',futStem:'fer',pp:'fait',aux:'avoir'},
+  {id:'dire',inf:'dire',pt:'dizer',pres:['dis','dis','dit','disons','dites','disent'],nousPres:'disons',futStem:'dir',pp:'dit',aux:'avoir'},
+  {id:'parler',inf:'parler',pt:'falar',pres:['parle','parles','parle','parlons','parlez','parlent'],nousPres:'parlons',futStem:'parler',pp:'parlé',aux:'avoir'},
+  {id:'habiter',inf:'habiter',pt:'morar',pres:['habite','habites','habite','habitons','habitez','habitent'],nousPres:'habitons',futStem:'habiter',pp:'habité',aux:'avoir'},
+  {id:'travailler',inf:'travailler',pt:'trabalhar',pres:['travaille','travailles','travaille','travaillons','travaillez','travaillent'],nousPres:'travaillons',futStem:'travailler',pp:'travaillé',aux:'avoir'},
+  {id:'aimer',inf:'aimer',pt:'gostar/amar',pres:['aime','aimes','aime','aimons','aimez','aiment'],nousPres:'aimons',futStem:'aimer',pp:'aimé',aux:'avoir'},
+  {id:'manger',inf:'manger',pt:'comer',pres:['mange','manges','mange','mangeons','mangez','mangent'],nousPres:'mangeons',futStem:'manger',pp:'mangé',aux:'avoir'},
+  {id:'finir',inf:'finir',pt:'terminar/acabar',pres:['finis','finis','finit','finissons','finissez','finissent'],nousPres:'finissons',futStem:'finir',pp:'fini',aux:'avoir'},
+  {id:'choisir',inf:'choisir',pt:'escolher',pres:['choisis','choisis','choisit','choisissons','choisissez','choisissent'],nousPres:'choisissons',futStem:'choisir',pp:'choisi',aux:'avoir'},
+  {id:'prendre',inf:'prendre',pt:'tomar/apanhar',pres:['prends','prends','prend','prenons','prenez','prennent'],nousPres:'prenons',futStem:'prendr',pp:'pris',aux:'avoir'},
+  {id:'attendre',inf:'attendre',pt:'esperar',pres:['attends','attends','attend','attendons','attendez','attendent'],nousPres:'attendons',futStem:'attendr',pp:'attendu',aux:'avoir'},
+  {id:'mettre',inf:'mettre',pt:'pôr/colocar',pres:['mets','mets','met','mettons','mettez','mettent'],nousPres:'mettons',futStem:'mettr',pp:'mis',aux:'avoir'},
+  {id:'venir',inf:'venir',pt:'vir',pres:['viens','viens','vient','venons','venez','viennent'],nousPres:'venons',futStem:'viendr',pp:'venu',aux:'être'},
+  {id:'partir',inf:'partir',pt:'partir / ir embora',pres:['pars','pars','part','partons','partez','partent'],nousPres:'partons',futStem:'partir',pp:'parti',aux:'être'},
+  {id:'vouloir',inf:'vouloir',pt:'querer',pres:['veux','veux','veut','voulons','voulez','veulent'],nousPres:'voulons',futStem:'voudr',pp:'voulu',aux:'avoir'},
+  {id:'pouvoir',inf:'pouvoir',pt:'poder',pres:['peux','peux','peut','pouvons','pouvez','peuvent'],nousPres:'pouvons',futStem:'pourr',pp:'pu',aux:'avoir'},
+  {id:'devoir',inf:'devoir',pt:'dever / ter de',pres:['dois','dois','doit','devons','devez','doivent'],nousPres:'devons',futStem:'devr',pp:'dû',aux:'avoir'},
+  {id:'savoir',inf:'savoir',pt:'saber',pres:['sais','sais','sait','savons','savez','savent'],nousPres:'savons',futStem:'saur',pp:'su',aux:'avoir'},
+  {id:'voir',inf:'voir',pt:'ver',pres:['vois','vois','voit','voyons','voyez','voient'],nousPres:'voyons',futStem:'verr',pp:'vu',aux:'avoir'},
+  {id:'boire',inf:'boire',pt:'beber',pres:['bois','bois','boit','buvons','buvez','boivent'],nousPres:'buvons',futStem:'boir',pp:'bu',aux:'avoir'},
+  {id:'comprendre',inf:'comprendre',pt:'compreender/entender',pres:['comprends','comprends','comprend','comprenons','comprenez','comprennent'],nousPres:'comprenons',futStem:'comprendr',pp:'compris',aux:'avoir'},
+  {id:'sortir',inf:'sortir',pt:'sair',pres:['sors','sors','sort','sortons','sortez','sortent'],nousPres:'sortons',futStem:'sortir',pp:'sorti',aux:'être'},
+  {id:'donner',inf:'donner',pt:'dar',pres:['donne','donnes','donne','donnons','donnez','donnent'],nousPres:'donnons',futStem:'donner',pp:'donné',aux:'avoir'},
+  {id:'ecrire',inf:'écrire',pt:'escrever',pres:['écris','écris','écrit','écrivons','écrivez','écrivent'],nousPres:'écrivons',futStem:'écrir',pp:'écrit',aux:'avoir'},
+  {id:'lire',inf:'lire',pt:'ler',pres:['lis','lis','lit','lisons','lisez','lisent'],nousPres:'lisons',futStem:'lir',pp:'lu',aux:'avoir'},
+  {id:'connaitre',inf:'connaître',pt:'conhecer',pres:['connais','connais','connaît','connaissons','connaissez','connaissent'],nousPres:'connaissons',futStem:'connaîtr',pp:'connu',aux:'avoir'},
+  {id:'repondre',inf:'répondre',pt:'responder',pres:['réponds','réponds','répond','répondons','répondez','répondent'],nousPres:'répondons',futStem:'répondr',pp:'répondu',aux:'avoir'}
+];
+const PRON=['je','tu','il/elle','nous','vous','ils/elles'];
+const TENSES=[
+  {id:'present',label:'Présent'},
+  {id:'passe',label:'Passé composé'},
+  {id:'imparfait',label:'Imparfait'},
+  {id:'futur',label:'Futur simple'},
+  {id:'cond',label:'Conditionnel'}
+];
+const IMP_END=['ais','ais','ait','ions','iez','aient'];
+const FUT_END=['ai','as','a','ons','ez','ont'];
+const AUX={avoir:['ai','as','a','avons','avez','ont'],'être':['suis','es','est','sommes','êtes','sont']};
+function conj(V,tense){
+  const out=[];
+  for(let i=0;i<6;i++){
+    if(tense==='present'){out.push(V.pres[i]);}
+    else if(tense==='imparfait'){
+      if(V.imp){out.push(V.imp[i]);continue;}
+      let s=V.nousPres.replace(/ons$/,'');
+      if(i===3||i===4){ if(s.endsWith('ge'))s=s.slice(0,-1); else if(s.endsWith('ç'))s=s.slice(0,-1)+'c'; }
+      out.push(s+IMP_END[i]);
+    }
+    else if(tense==='futur'){out.push(V.futStem+FUT_END[i]);}
+    else if(tense==='cond'){out.push(V.futStem+IMP_END[i]);}
+    else if(tense==='passe'){out.push(AUX[V.aux][i]+' '+V.pp);}
+  }
+  return out;
+}
+
+/* ---------------- state ---------------- */
+let S={v:1,lastStudied:null,streak:0,lessons:{},srs:{},conj:{},stats:{reviews:0,correct:0}};
+const BOX_DAYS=[0,1,3,7,21]; // days until next review for box 1..5 (index = box-1)
+const DAY=86400000;
+
+async function loadState(){
+  const raw=await store.get(STATE_KEY);
+  if(raw){ try{ S=Object.assign(S,JSON.parse(raw)); }catch(e){} }
+  // streak
+  const today=new Date().toDateString();
+  if(S.lastStudied!==today){
+    const y=new Date(Date.now()-DAY).toDateString();
+    S.streak=(S.lastStudied===y)?S.streak+1:1;
+    S.lastStudied=today;
+    await saveState();
+  }
+}
+async function saveState(){ await store.set(STATE_KEY,JSON.stringify(S)); }
+
+/* ---------------- nav ---------------- */
+const tabs=document.getElementById('tabs');
+tabs.addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b)return;
+  document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  const v=b.dataset.v;
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  if(v==='today')renderToday();
+  if(v==='home')renderHome();
+  if(v==='lessons')renderLessonList();
+  if(v==='vocab')startVocab();
+  if(v==='conj')initConj();
+  if(v==='atelier')initAtelier();
+});
+
+/* ---------------- helpers ---------------- */
+function norm(s){
+  return (s||'').toLowerCase().trim()
+    .replace(/\s+/g,' ')
+    .replace(/[’]/g,"'");
+}
+function stripAcc(s){ return s.normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+function dueCount(){
+  const now=Date.now(); let n=0;
+  DECK.forEach(w=>{ const c=S.srs[w.id]; if(!c||c.due<=now)n++; });
+  return n;
+}
+
+/* ---------------- HOME ---------------- */
+function renderHome(){
+  const lessonsDone=Object.values(S.lessons).filter(l=>l.done).length;
+  const wordsSeen=Object.keys(S.srs).length;
+  const acc=S.stats.reviews?Math.round(100*S.stats.correct/S.stats.reviews):0;
+  document.getElementById('stats').innerHTML=`
+    <div class="stat gold"><div class="v">${S.streak}</div><div class="k">Day streak</div></div>
+    <div class="stat"><div class="v">${lessonsDone}/${LESSONS.length}</div><div class="k">Lessons done</div></div>
+    <div class="stat"><div class="v">${wordsSeen}/${DECK.length}</div><div class="k">Words started</div></div>
+    <div class="stat"><div class="v">${acc}%</div><div class="k">Recall accuracy</div></div>`;
+  const due=dueCount();
+  const nextLesson=LESSONS.find(l=>!(S.lessons[l.id]&&S.lessons[l.id].done))||LESSONS[LESSONS.length-1];
+  document.getElementById('ctaRow').innerHTML=`
+    <button class="cta" data-go="vocab"><div class="ch">Review ${due} word${due===1?'':'s'} →</div><div class="cs">Due in your spaced-repetition deck</div></button>
+    <button class="cta" data-go="lessons"><div class="ch">${nextLesson.title} →</div><div class="cs">${(S.lessons[nextLesson.id]&&S.lessons[nextLesson.id].done)?'Review':'Next grammar lesson'}</div></button>`;
+  document.getElementById('ctaRow').querySelectorAll('.cta').forEach(c=>{
+    c.onclick=()=>document.querySelector(`nav.tabs button[data-v="${c.dataset.go}"]`).click();
+  });
+  updateBadges();
+}
+function updateBadges(){
+  document.getElementById('ln').textContent=`${Object.values(S.lessons).filter(l=>l.done).length}/${LESSONS.length}`;
+  document.getElementById('vn').textContent=dueCount()?`${dueCount()} due`:'';
+}
+
+/* ---------------- LESSONS ---------------- */
+function renderLessonList(){
+  document.getElementById('lessonDetail').innerHTML='';
+  const list=document.getElementById('lessonList');
+  list.style.display='flex';
+  list.innerHTML=LESSONS.map((l,i)=>{
+    const done=S.lessons[l.id]&&S.lessons[l.id].done;
+    return `<div class="lrow" data-id="${l.id}">
+      <span class="idx">${String(i+1).padStart(2,'0')}</span>
+      <span class="lt">${l.title}<small>${l.sub}</small></span>
+      <span class="badge ${done?'done':''}">${done?'✓ done':'open'}</span>
+    </div>`;
+  }).join('');
+  list.querySelectorAll('.lrow').forEach(r=>r.onclick=()=>openLesson(r.dataset.id));
+}
+function openLesson(id){
+  const L=LESSONS.find(x=>x.id===id);
+  document.getElementById('lessonList').style.display='none';
+  const d=document.getElementById('lessonDetail');
+  d.innerHTML=`
+    <button class="btn ghost" id="backL">← all lessons</button>
+    <div class="panel">
+      <h2 class="section" style="margin-top:6px">${L.title}</h2>
+      <p class="sub">${L.sub}</p>
+      ${L.html}
+      <h4 style="font-family:var(--serif);font-weight:500;font-size:18px;margin-top:24px">Exercice</h4>
+      <div class="drill" id="drillArea"></div>
+    </div>`;
+  document.getElementById('backL').onclick=renderLessonList;
+  runDrills(L);
+}
+function runDrills(L){
+  let i=0,correct=0;
+  const area=document.getElementById('drillArea');
+  function show(){
+    if(i>=L.drills.length){
+      const pass=correct>=Math.ceil(L.drills.length*0.6);
+      S.lessons[L.id]={done:true,score:correct};
+      saveState();updateBadges();
+      area.innerHTML=`<div class="verdict ${pass?'ok':'warn'}">${correct}/${L.drills.length} correct. ${pass?'Lesson marked complete. ✓':'Marked done — but reopen and redrill, this needs another pass.'}</div>
+        <div class="btnrow"><button class="btn" id="redo">Redo drill</button><button class="btn ghost" id="back2">← lessons</button></div>`;
+      document.getElementById('redo').onclick=()=>runDrills(L);
+      document.getElementById('back2').onclick=renderLessonList;
+      return;
+    }
+    const q=L.drills[i];
+    let body=`<div class="q"><span class="cue">[${i+1}/${L.drills.length}]</span> ${q.q}</div>`;
+    if(q.type==='choice'){
+      body+=`<div class="opts">${q.opts.map(o=>`<button class="opt" data-o="${o.replace(/"/g,'&quot;')}">${o}</button>`).join('')}</div><div class="verdict" id="vd"></div>`;
+      area.innerHTML=body;
+      area.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+        const ok=b.dataset.o===q.a;
+        area.querySelectorAll('.opt').forEach(x=>{x.style.pointerEvents='none';if(x.dataset.o===q.a)x.classList.add('right');});
+        if(!ok)b.classList.add('wrong');
+        if(ok)correct++;
+        document.getElementById('vd').innerHTML=`<span class="${ok?'ok':'no'}">${ok?'Correct.':'Non — c\'est «'+q.a+'».'}</span>`;
+        setTimeout(()=>{i++;show();},ok?700:1500);
+      });
+    } else {
+      body+=`<input class="txt" id="tin" autocomplete="off" placeholder="tapez en français…"><div class="btnrow"><button class="btn" id="chk">Check</button><div class="verdict" id="vd"></div></div>`;
+      area.innerHTML=body;
+      const inp=document.getElementById('tin');inp.focus();
+      function check(){
+        const ua=norm(inp.value),ta=norm(q.a);
+        let ok=ua===ta, soft=!ok&&stripAcc(ua)===stripAcc(ta);
+        inp.style.pointerEvents='none';
+        if(ok||soft)correct++;
+        document.getElementById('vd').innerHTML= ok?`<span class="ok">Correct.</span>`
+          : soft?`<span class="warn">Right word — mind the accents: «${q.a}»</span>`
+          : `<span class="no">Non — «${q.a}»</span>`;
+        document.getElementById('chk').disabled=true;
+        setTimeout(()=>{i++;show();},(ok)?700:1500);
+      }
+      document.getElementById('chk').onclick=check;
+      inp.addEventListener('keydown',e=>{if(e.key==='Enter')check();});
+    }
+  }
+  show();
+}
+
+/* ---------------- VOCAB (SRS) ---------------- */
+let vMode='produce';
+document.getElementById('vocabMode').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  document.querySelectorAll('#vocabMode button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');vMode=b.dataset.m;startVocab();
+});
+function dueQueue(){
+  const now=Date.now();
+  return DECK.filter(w=>{const c=S.srs[w.id];return !c||c.due<=now;});
+}
+function startVocab(practiceAll){
+  const stage=document.getElementById('vocabStage');
+  let pool=practiceAll?DECK.slice():dueQueue();
+  if(!pool.length){
+    const now=Date.now();
+    const later=DECK.filter(w=>S.srs[w.id]&&S.srs[w.id].due>now).length;
+    stage.innerHTML=`<div class="empty">Rien à réviser aujourd'hui. ✓<br>
+      <small>${later} word${later===1?'':'s'} scheduled for the coming days — come back tomorrow and a new due set appears.</small><br><br>
+      <button class="btn ghost" id="practiceAll">Practice the whole deck anyway</button></div>`;
+    document.getElementById('practiceAll').onclick=()=>startVocab(true);
+    return;
+  }
+  let queue=pool.sort(()=>Math.random()-.5).slice(0,Math.min(12,pool.length));
+  let idx=0;
+  function grade(w,gotIt){
+    const c=S.srs[w.id]||{box:1};
+    c.box=gotIt?Math.min(5,(c.box||1)+1):1;
+    c.due=Date.now()+BOX_DAYS[c.box-1]*DAY;
+    S.srs[w.id]=c;
+    S.stats.reviews++; if(gotIt)S.stats.correct++;
+    saveState();updateBadges();
+  }
+  function render(){
+    if(idx>=queue.length){
+      const remaining=practiceAll?0:dueQueue().length;
+      stage.innerHTML=`<div class="empty">Session done — ${queue.length} cards reviewed.${remaining?` ${remaining} still due.`:' Nothing left due today. ✓'}<br><br>
+        <button class="btn" id="more">${remaining?'Continue':'Review schedule'}</button></div>`;
+      document.getElementById('more').onclick=()=>startVocab();return;
+    }
+    const w=queue[idx];
+    const pct=Math.round(100*idx/queue.length);
+    if(vMode==='recognise'){
+      stage.innerHTML=`
+        <div class="progressbar"><i style="width:${pct}%"></i></div>
+        <div class="card-stage">
+          <div class="card-prompt-lab">français — meaning?</div>
+          <div class="card-prompt">${w.fr}</div>
+          <div class="card-ans" id="ans" style="visibility:hidden">${w.pt}</div>
+          <div class="card-meta" id="meta" style="visibility:hidden">${w.note?w.note:''}</div>
+          ${w.ff?'<div class="ffstamp" id="ff" style="visibility:hidden">faux ami</div>':''}
+          <div class="btnrow" style="justify-content:center" id="brow">
+            <button class="btn" id="reveal">Show answer</button>
+          </div>
+        </div>`;
+      document.getElementById('reveal').onclick=()=>{
+        ['ans','meta','ff'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.visibility='visible';});
+        document.getElementById('brow').innerHTML=`
+          <button class="btn ghost" id="miss">Missed</button>
+          <button class="btn" id="got">Got it</button>`;
+        document.getElementById('got').onclick=()=>{grade(w,true);idx++;render();};
+        document.getElementById('miss').onclick=()=>{grade(w,false);idx++;render();};
+      };
+    } else {
+      stage.innerHTML=`
+        <div class="progressbar"><i style="width:${pct}%"></i></div>
+        <div class="card-stage">
+          <div class="card-prompt-lab">portugais → produce the french</div>
+          <div class="card-prompt pt">${w.pt}</div>
+          <input class="txt" id="vin" autocomplete="off" placeholder="écrivez en français…" style="margin:6px auto 0;display:block">
+          <div class="card-ans" id="ans" style="min-height:38px"></div>
+          <div class="card-meta" id="meta"></div>
+          <div class="btnrow" style="justify-content:center" id="brow">
+            <button class="btn" id="chk">Check</button>
+            <button class="btn ghost" id="skip">Don't know</button>
+          </div>
+        </div>`;
+      const inp=document.getElementById('vin');inp.focus();
+      function reveal(ok,soft){
+        document.getElementById('ans').textContent=w.fr;
+        document.getElementById('meta').innerHTML=(w.ff?'<span class="ffstamp">faux ami</span> ':'')+(w.note||'');
+        inp.style.pointerEvents='none';
+        document.getElementById('brow').innerHTML=`<div class="verdict ${ok?'ok':soft?'warn':'no'}">${ok?'Correct.':soft?'Right word — mind the accents.':'Not quite.'}</div><button class="btn" id="nx">Next →</button>`;
+        document.getElementById('nx').onclick=()=>{grade(w,ok||soft);idx++;render();};
+      }
+      function check(){
+        const ua=norm(inp.value);
+        // accept with or without leading article for nouns
+        const targets=[norm(w.fr)];
+        const m=norm(w.fr).match(/^(le |la |l'|les |un |une )(.*)/);
+        if(m)targets.push(m[2]);
+        const exact=targets.includes(ua);
+        const soft=!exact&&targets.map(stripAcc).includes(stripAcc(ua));
+        reveal(exact,soft);
+      }
+      document.getElementById('chk').onclick=check;
+      inp.addEventListener('keydown',e=>{if(e.key==='Enter')check();});
+      document.getElementById('skip').onclick=()=>reveal(false,false);
+    }
+  }
+  render();
+}
+
+/* ---------------- CONJUGATION ---------------- */
+function initConj(){
+  const vs=document.getElementById('verbSel'), ts=document.getElementById('tenseSel');
+  if(!vs.options.length){
+    vs.innerHTML=VERBS.map(v=>`<option value="${v.id}">${v.inf} — ${v.pt}</option>`).join('');
+    vs.onchange=()=>renderConj(vs.value);
+  }
+  if(ts&&!ts.options.length){
+    ts.innerHTML=TENSES.map(t=>`<option value="${t.id}">${t.label}</option>`).join('');
+    ts.onchange=()=>renderConj(vs.value);
+  }
+  renderConj(vs.value||VERBS[0].id);
+}
+function curTense(){const ts=document.getElementById('tenseSel');return ts?ts.value:'present';}
+function renderConj(vid){
+  const V=VERBS.find(x=>x.id===vid)||VERBS[0];
+  const tense=curTense();
+  const forms=conj(V,tense);
+  const tlabel=(TENSES.find(t=>t.id===tense)||{}).label||'';
+  const stage=document.getElementById('conjStage');
+  stage.innerHTML=`
+    <div class="panel">
+      <div style="font-family:var(--mono);color:var(--muted);font-size:13px">${V.inf} · ${V.pt} · ${tlabel.toLowerCase()}</div>
+      <div class="conj-grid" id="cg">
+        ${PRON.map((p,i)=>`<div class="pn">${p}</div><input data-i="${i}" autocomplete="off" placeholder="…">`).join('')}
+      </div>
+      ${tense==='passe'?`<p class="sub" style="font-size:12px;margin-top:10px">Auxiliary: <b>${V.aux}</b>${V.aux==='être'?' — the participle agrees with the subject (allé / allée / allés / allées all accepted).':''}</p>`:''}
+      <div class="btnrow"><button class="btn" id="cChk">Check all</button><button class="btn ghost" id="cSol">Show solution</button><div class="verdict" id="cVd"></div></div>
+    </div>`;
+  const inputs=[...stage.querySelectorAll('input')];
+  function accepted(i){
+    const b=norm(forms[i]);const arr=[b,stripAcc(b)];
+    if(tense==='passe'&&V.aux==='être'){['e','s','es'].forEach(s=>{const v=norm(AUX['être'][i]+' '+V.pp+s);arr.push(v,stripAcc(v));});}
+    return arr;
+  }
+  function check(){
+    let all=true,n=0;
+    inputs.forEach((inp,i)=>{
+      const ua=norm(inp.value).replace(/^(je |tu |il |elle |on |nous |vous |ils |elles |j')/,'').trim();
+      const ok=accepted(i).includes(ua)||accepted(i).includes(stripAcc(ua));
+      inp.classList.remove('ok','no');inp.classList.add(ok?'ok':'no');
+      if(ok)n++;else all=false;
+    });
+    document.getElementById('cVd').innerHTML=all?'<span class="ok">All six correct. ✓</span>':`<span class="no">${n}/6 — fix the red ones.</span>`;
+    if(all){S.conj[V.id+':'+tense]={mastered:true};saveState();}
+  }
+  document.getElementById('cChk').onclick=check;
+  document.getElementById('cSol').onclick=()=>{
+    inputs.forEach((inp,i)=>{inp.value=forms[i];inp.classList.remove('no');inp.classList.add('ok');});
+    document.getElementById('cVd').innerHTML='<span class="warn">Solution shown — hide it and type from memory.</span>';
+  };
+  inputs.forEach(inp=>inp.addEventListener('keydown',e=>{if(e.key==='Enter')check();}));
+}
+
+/* ---------------- reset ---------------- */
+document.getElementById('resetBtn').onclick=async()=>{
+  if(confirm('Erase all progress on this device?')){
+    S={v:1,lastStudied:new Date().toDateString(),streak:1,lessons:{},srs:{},conj:{},stats:{reviews:0,correct:0}};
+    await saveState();renderHome();renderLessonList();
+  }
+};
+
+/* ---------------- TODAY (daily plan, composed fresh each day) ---------------- */
+function daySeed(){const d=new Date();return (d.getFullYear()*372)+(d.getMonth()*31)+d.getDate();}
+function todayKey(){return new Date().toDateString();}
+const FR_DAYS=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+const FR_MONTHS=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+function frDate(){const d=new Date();return `${FR_DAYS[d.getDay()]} ${d.getDate()} ${FR_MONTHS[d.getMonth()]}`;}
+
+function renderToday(){
+  const due=dueCount();
+  const next=LESSONS.find(l=>!(S.lessons[l.id]&&S.lessons[l.id].done))||LESSONS[LESSONS.length-1];
+  const nextDone=S.lessons[next.id]&&S.lessons[next.id].done;
+  const verb=VERBS[daySeed()%VERBS.length];
+  const lessonsDone=Object.values(S.lessons).filter(l=>l.done).length;
+  document.getElementById('todayDate').textContent=frDate();
+  document.getElementById('todayStreak').textContent=S.streak;
+  document.getElementById('todayProg').textContent=`${lessonsDone}/${LESSONS.length}`;
+  document.getElementById('todayPlan').innerHTML=`
+    <button class="cta" data-go="atelier"><div class="ch">Leçon du jour →</div><div class="cs">Themed translation set, rotates daily · free</div></button>
+    <button class="cta" data-go="vocab"><div class="ch">Réviser ${due} mot${due===1?'':'s'} →</div><div class="cs">Spaced-repetition cards due today · free</div></button>
+    <button class="cta" data-go="lessons"><div class="ch">${nextDone?'Revoir':'Nouvelle leçon'} : ${next.title} →</div><div class="cs">${nextDone?'Backbone complete — review or use the Atelier':'Next rung on the grammar ladder · free'}</div></button>
+    <button class="cta" data-go="conj"><div class="ch">Verbe du jour : ${verb.inf} →</div><div class="cs">${verb.pt} · rotates daily · free</div></button>`;
+  document.getElementById('todayPlan').querySelectorAll('.cta').forEach(c=>{
+    c.onclick=()=>{
+      document.querySelector(`nav.tabs button[data-v="${c.dataset.go}"]`).click();
+      if(c.dataset.go==='conj'){const sel=document.getElementById('verbSel');if(sel){sel.value=verb.id;renderConj(verb.id);}}
+    };
+  });
+  updateBadges();
+}
+
+/* ---------------- ATELIER (AI daily generator, cached once per day) ---------------- */
+const LOCAL_ATELIER=[
+  {focus:"Au café — ordering and asking",items:[
+    {pt:"Um café, por favor.",fr:"Un café, s'il vous plaît.",hint:"ordering"},
+    {pt:"Quanto custa?",fr:"Combien ça coûte ?",hint:"price"},
+    {pt:"Tem chá?",fr:"Vous avez du thé ?",hint:"partitive du"},
+    {pt:"Eu queria um croissant.",fr:"Je voudrais un croissant.",hint:"polite want"},
+    {pt:"A conta, por favor.",fr:"L'addition, s'il vous plaît.",hint:""},
+    {pt:"Onde são as casas de banho?",fr:"Où sont les toilettes ?",hint:"location"}
+  ]},
+  {focus:"Au travail — the working day",items:[
+    {pt:"Tenho uma reunião às nove.",fr:"J'ai une réunion à neuf heures.",hint:"avoir + time"},
+    {pt:"Trabalho num banco.",fr:"Je travaille dans une banque.",hint:""},
+    {pt:"Posso enviar o email amanhã.",fr:"Je peux envoyer l'email demain.",hint:"pouvoir"},
+    {pt:"Estou ocupado agora.",fr:"Je suis occupé maintenant.",hint:"être"},
+    {pt:"Vou telefonar ao cliente.",fr:"Je vais téléphoner au client.",hint:"futur proche"},
+    {pt:"Não compreendo a pergunta.",fr:"Je ne comprends pas la question.",hint:"negation"}
+  ]},
+  {focus:"À la banque — practical errands",items:[
+    {pt:"Queria abrir uma conta.",fr:"Je voudrais ouvrir un compte.",hint:""},
+    {pt:"Onde fica o banco?",fr:"Où est la banque ?",hint:""},
+    {pt:"Preciso de dinheiro.",fr:"J'ai besoin d'argent.",hint:"avoir besoin de"},
+    {pt:"Aceitam cartão?",fr:"Vous acceptez la carte ?",hint:""},
+    {pt:"Qual é o meu saldo?",fr:"Quel est mon solde ?",hint:""},
+    {pt:"O banco está aberto?",fr:"La banque est ouverte ?",hint:"agreement"}
+  ]},
+  {focus:"Les directions — getting around",items:[
+    {pt:"Onde fica a estação?",fr:"Où est la gare ?",hint:"gare = station"},
+    {pt:"Vire à direita.",fr:"Tournez à droite.",hint:"imperative"},
+    {pt:"É longe daqui?",fr:"C'est loin d'ici ?",hint:""},
+    {pt:"Sempre em frente.",fr:"Tout droit.",hint:"straight ahead"},
+    {pt:"Estou perdido.",fr:"Je suis perdu.",hint:""},
+    {pt:"Pode ajudar-me?",fr:"Pouvez-vous m'aider ?",hint:"polite"}
+  ]},
+  {focus:"Au restaurant — eating out",items:[
+    {pt:"Uma mesa para dois.",fr:"Une table pour deux.",hint:""},
+    {pt:"O que recomenda?",fr:"Qu'est-ce que vous recommandez ?",hint:"est-ce que"},
+    {pt:"Sou alérgico ao glúten.",fr:"Je suis allergique au gluten.",hint:""},
+    {pt:"Está delicioso.",fr:"C'est délicieux.",hint:""},
+    {pt:"Mais água, por favor.",fr:"Encore de l'eau, s'il vous plaît.",hint:"partitive"},
+    {pt:"Vou pagar com cartão.",fr:"Je vais payer par carte.",hint:"par carte"}
+  ]},
+  {focus:"Se présenter — introducing yourself",items:[
+    {pt:"Chamo-me Renato.",fr:"Je m'appelle Renato.",hint:"reflexive"},
+    {pt:"Sou português.",fr:"Je suis portugais.",hint:""},
+    {pt:"Moro em Nottingham.",fr:"J'habite à Nottingham.",hint:"à + city"},
+    {pt:"Tenho trinta anos.",fr:"J'ai trente ans.",hint:"avoir for age"},
+    {pt:"Falo um pouco de francês.",fr:"Je parle un peu français.",hint:""},
+    {pt:"Muito prazer.",fr:"Enchanté.",hint:"nice to meet you"}
+  ]},
+  {focus:"Les courses — shopping",items:[
+    {pt:"Quanto é tudo?",fr:"Ça fait combien ?",hint:"total"},
+    {pt:"Procuro pão.",fr:"Je cherche du pain.",hint:"partitive"},
+    {pt:"Tem maçãs?",fr:"Vous avez des pommes ?",hint:""},
+    {pt:"É muito caro.",fr:"C'est trop cher.",hint:"trop = too"},
+    {pt:"Vou levar dois.",fr:"J'en prends deux.",hint:"en = of them"},
+    {pt:"Só isto, obrigado.",fr:"C'est tout, merci.",hint:""}
+  ]},
+  {focus:"Le temps et les rendez-vous",items:[
+    {pt:"Que horas são?",fr:"Quelle heure est-il ?",hint:""},
+    {pt:"São duas horas.",fr:"Il est deux heures.",hint:"il est for time"},
+    {pt:"Estou livre amanhã.",fr:"Je suis libre demain.",hint:""},
+    {pt:"Podemos ver-nos às cinco?",fr:"On peut se voir à cinq heures ?",hint:"on = nous"},
+    {pt:"Hoje está frio.",fr:"Il fait froid aujourd'hui.",hint:"il fait for weather"},
+    {pt:"Vai chover.",fr:"Il va pleuvoir.",hint:"futur proche"}
+  ]},
+  {focus:"Les transports — travelling",items:[
+    {pt:"Onde é a paragem de autocarro?",fr:"Où est l'arrêt de bus ?",hint:""},
+    {pt:"Um bilhete, por favor.",fr:"Un billet, s'il vous plaît.",hint:""},
+    {pt:"A que horas é o comboio?",fr:"À quelle heure est le train ?",hint:""},
+    {pt:"Este lugar está livre?",fr:"Cette place est libre ?",hint:""},
+    {pt:"Vou de táxi.",fr:"Je vais en taxi.",hint:"en + transport"},
+    {pt:"O voo está atrasado.",fr:"Le vol est en retard.",hint:"en retard = late"}
+  ]},
+  {focus:"Le logement — finding a flat (Genève)",items:[
+    {pt:"Procuro um apartamento.",fr:"Je cherche un appartement.",hint:""},
+    {pt:"Quanto é a renda?",fr:"Quel est le loyer ?",hint:"loyer = rent"},
+    {pt:"Tem dois quartos.",fr:"Il y a deux chambres.",hint:"il y a"},
+    {pt:"Quando posso visitar?",fr:"Quand est-ce que je peux visiter ?",hint:""},
+    {pt:"As despesas estão incluídas?",fr:"Les charges sont comprises ?",hint:"charges = bills"},
+    {pt:"Assino o contrato.",fr:"Je signe le contrat.",hint:""}
+  ]}
+];
+function dayAtelierSet(){return LOCAL_ATELIER[daySeed()%LOCAL_ATELIER.length];}
+function initAtelier(){
+  document.getElementById('atGen').onclick=()=>openAtelier();
+  document.getElementById('atNew').onclick=()=>openAtelierAI(document.getElementById('atTheme').value);
+  openAtelier(); // show today's free lesson on arrival
+}
+function openAtelier(){ renderAtelier(dayAtelierSet(),'local'); }
+async function openAtelierAI(theme){
+  const stage=document.getElementById('atelierStage');
+  theme=(theme||'').trim();
+  stage.innerHTML='<div class="empty">Génération via l\'IA…<br><small>this calls the model and uses a little credit</small></div>';
+  const sys="You are a French tutor for a native European Portuguese speaker at A1-A2 level moving to Geneva. Create a short fresh translation practice set. Respond with ONLY valid JSON, no markdown fences, no preamble. Schema: {\"focus\":\"short focus in English\",\"items\":[{\"pt\":\"European Portuguese sentence\",\"fr\":\"correct natural French\",\"hint\":\"short English hint\"}]}. Exactly 6 items, A1-A2, practical situations. Keep the French correct.";
+  const usr=theme?("Theme: "+theme+". Generate the set."):"Generate a varied practice set on a practical everyday theme.";
+  try{
+    const res=await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1000,system:sys,messages:[{role:"user",content:usr}]})
+    });
+    const data=await res.json();
+    let txt=(data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('\n').trim();
+    txt=txt.replace(/```json/gi,'').replace(/```/g,'').trim();
+    const obj=JSON.parse(txt);
+    if(!obj.items||!obj.items.length)throw new Error('empty');
+    renderAtelier(obj,'ai');
+  }catch(e){
+    stage.innerHTML='<div class="empty">The in-app AI generator isn\'t available here.<br><small>It needs the chat app\'s API access, which is off in this view. The free daily lesson and every other module work normally — for AI-written practice, just ask me in chat.</small><br><br><button class="btn" id="back2local">Show today\'s free lesson</button></div>';
+    document.getElementById('back2local').onclick=()=>openAtelier();
+  }
+}
+function renderAtelier(obj,source){
+  const stage=document.getElementById('atelierStage');
+  const tag=source==='ai'?'· AI-generated':source==='local'?'· free · rotates daily':'';
+  stage.innerHTML=`<div class="panel">
+    <div style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--bleu)">Focus du jour ${tag}</div>
+    <h2 class="section" style="margin-top:4px;font-size:20px">${obj.focus||'Pratique'}</h2>
+    <p class="sub" style="font-size:13px">Translate each Portuguese sentence into French. Punctuation and capitals are ignored.</p>
+    <div class="drill" id="atDrill"></div>
+  </div>`;
+  genDrills(obj.items.map(it=>({q:`<span class="pt" style="color:var(--bleu)">${it.pt}</span>${it.hint?` <small style="color:var(--muted)">(${it.hint})</small>`:''}`,a:it.fr})),document.getElementById('atDrill'));
+}
+function genDrills(drills,area){
+  let i=0,correct=0;
+  function show(){
+    if(i>=drills.length){
+      area.innerHTML=`<div class="verdict ${correct>=Math.ceil(drills.length*.6)?'ok':'warn'}">${correct}/${drills.length} marked correct. Bring anything doubtful to chat.</div>`;
+      return;
+    }
+    const q=drills[i];
+    area.innerHTML=`<div class="q"><span class="cue">[${i+1}/${drills.length}]</span> ${q.q}</div>
+      <input class="txt" id="gin" autocomplete="off" placeholder="traduisez en français…">
+      <div class="btnrow"><button class="btn" id="gchk">Check</button><button class="btn ghost" id="gshow">Show</button><div class="verdict" id="gvd"></div></div>`;
+    const inp=document.getElementById('gin');inp.focus();
+    function finish(ok,soft){
+      inp.style.pointerEvents='none';
+      if(ok||soft)correct++;
+      document.getElementById('gvd').innerHTML=ok?'<span class="ok">Correct.</span>':soft?`<span class="warn">Right words — accents: «${q.a}»</span>`:`<span class="no">→ «${q.a}»</span>`;
+      document.getElementById('gchk').disabled=true;document.getElementById('gshow').disabled=true;
+      const nx=document.createElement('button');nx.className='btn';nx.textContent='Next →';nx.style.marginLeft='8px';
+      document.getElementById('gvd').after(nx);nx.onclick=()=>{i++;show();};
+    }
+    function clean(s){return norm(s).replace(/[.,;:!?¿¡«»"'`]/g,'').replace(/\s+/g,' ').trim();}
+    function check(){const ua=clean(inp.value),ta=clean(q.a);finish(ua===ta,ua!==ta&&stripAcc(ua)===stripAcc(ta));}
+    document.getElementById('gchk').onclick=check;
+    document.getElementById('gshow').onclick=()=>finish(false,false);
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter')check();});
+  }
+  show();
+}
+
+/* ---------------- auth + boot ---------------- */
+let SB=null, USER=null;
+function showLogin(){document.getElementById('authGate').style.display='flex';document.querySelector('.wrap').style.display='none';}
+function showApp(){document.getElementById('authGate').style.display='none';document.querySelector('.wrap').style.display='block';}
+async function startApp(){
+  S={v:1,lastStudied:null,streak:0,lessons:{},srs:{},conj:{},stats:{reviews:0,correct:0}};
+  await loadState();
+  renderToday(); renderHome();
+  const ai=document.getElementById('acctInfo');
+  if(ai) ai.textContent = USER ? (' · '+USER.email) : ' · local mode';
+}
+function authMsg(t,cls){const m=document.getElementById('authMsg');m.className='verdict '+(cls||'');m.textContent=t;}
+async function doAuth(mode){
+  const email=document.getElementById('authEmail').value.trim();
+  const pass=document.getElementById('authPass').value;
+  if(!email||!pass){authMsg('Email and password required.','no');return;}
+  authMsg('…working…');
+  try{
+    const {data,error}= mode==='up'
+      ? await SB.auth.signUp({email,password:pass})
+      : await SB.auth.signInWithPassword({email,password:pass});
+    if(error){authMsg(error.message,'no');return;}
+    if(!data.session){authMsg('Account created. If email confirmation is on, confirm via email then sign in.','warn');return;}
+    USER=data.session.user; showApp(); await startApp();
+  }catch(e){authMsg('Auth failed: '+(e.message||e),'no');}
+}
+async function initAuth(){
+  const so=document.getElementById('signOut'); if(so) so.onclick=async()=>{ if(SB){try{await SB.auth.signOut();}catch(e){}} USER=null; showLogin(); };
+  document.getElementById('authSignin').onclick=()=>doAuth('in');
+  document.getElementById('authSignup').onclick=()=>doAuth('up');
+  document.getElementById('authPass').addEventListener('keydown',e=>{if(e.key==='Enter')doAuth('in');});
+  const configured = window.SUPA_URL && !/YOUR_/.test(window.SUPA_URL) && window.supabase;
+  if(!configured){ showApp(); await startApp(); return; } // local single-user mode until you paste keys
+  SB=window.supabase.createClient(window.SUPA_URL, window.SUPA_KEY);
+  try{
+    const {data:{session}}=await SB.auth.getSession();
+    if(session){ USER=session.user; showApp(); await startApp(); } else { showLogin(); }
+    SB.auth.onAuthStateChange((ev)=>{ if(ev==='SIGNED_OUT'){USER=null;showLogin();} });
+  }catch(e){ showLogin(); authMsg('Could not reach Supabase — check your URL/key.','no'); }
+}
+initAuth();
+</script>
+</body>
+</html>
